@@ -1,4037 +1,1350 @@
-    color: #777;
-}
-
-.nav-links {
-    display: flex;
-    gap: 30px;
-    list-style: none;
-
-    font-size: 13px;
-    color: #666;
-}
-
-.nav-links a:hover {
-    color: #000;
-}
-
-
-/* =========================
-   HERO
-========================= */
-
-.hero {
-    min-height: 88vh;
-
-    display: grid;
-    grid-template-columns: 1.1fr .9fr;
-
-    align-items: center;
-
-    gap: 70px;
-
-    padding: 70px 0;
-}
-
-.hero-small {
-    font-size: 11px;
-    letter-spacing: 4px;
-    color: #888;
-    text-transform: uppercase;
-    margin-bottom: 25px;
-}
-
-.hero h1 {
-    font-family: "Playfair Display", serif;
-
-    font-size: clamp(60px, 9vw, 105px);
-
-    font-weight: 400;
-
-    line-height: .9;
-
-    letter-spacing: -5px;
-}
-
-.hero h1 span {
-    color: #777;
-    font-style: italic;
-}
-
-.hero-description {
-    max-width: 570px;
-
-    margin-top: 35px;
-
-    color: #666;
-
-    font-size: 16px;
-}
-
-.hero-buttons {
-    display: flex;
-    gap: 12px;
-
-    margin-top: 35px;
-}
-
-.btn {
-    padding: 13px 24px;
-
-    border: 1px solid #222;
-
-    font-size: 12px;
-
-    transition: .3s;
-}
-
-.btn:hover {
-    background: #222;
-    color: white;
-}
-
-.btn-dark {
-    background: #222;
-    color: white;
-}
-
-.hero-photo {
-    height: 590px;
-
-    filter: grayscale(100%);
-
-    border-radius: 2px;
-}
-
-
-/* =========================
-   SECTION
-========================= */
-
-section {
-    padding: 110px 0;
-}
-
-.section-heading {
-    display: flex;
-    justify-content: space-between;
-    align-items: end;
-
-    border-bottom: 1px solid #d7d7d4;
-
-    padding-bottom: 20px;
-
-    margin-bottom: 55px;
-}
-
-.section-label {
-    font-size: 11px;
-
-    letter-spacing: 3px;
-
-    color: #888;
-
-    text-transform: uppercase;
-}
-
-.section-heading h2 {
-    font-family: "Playfair Display", serif;
-
-    font-size: 48px;
-
-    font-weight: 400;
-
-    margin-top: 7px;
-}
-
-.section-number {
-    color: #999;
-
-    font-size: 12px;
-}
-
-
-/* =========================
-   ABOUT
-========================= */
-
-.about-grid {
-    display: grid;
-
-    grid-template-columns: 1fr 1fr;
-
-    gap: 70px;
-
-    align-items: center;
-}
-
-.about-text {
-    font-size: 20px;
-
-    color: #555;
-}
-
-.about-text strong {
-    color: #222;
-}
-
-.about-photo {
-    height: 430px;
-
-    filter: grayscale(100%);
-}
-
-
-/* =========================
-   QUICK FACTS
-========================= */
-
-.facts {
-    margin-top: 45px;
-
-    display: grid;
-
-    grid-template-columns: repeat(3,1fr);
-
-    border-top: 1px solid #ddd;
-
-    border-left: 1px solid #ddd;
-}
-
-.fact {
-    background: white;
-
-    padding: 25px;
-
-    border-right: 1px solid #ddd;
-    border-bottom: 1px solid #ddd;
-}
-
-.fact-number {
-    font-size: 11px;
-
-    color: #999;
-}
-
-.fact h3 {
-    font-family: "Playfair Display", serif;
-
-    font-size: 23px;
-
-    margin-top: 12px;
-}
-
-
-/* =========================
-   EDUCATION
-========================= */
-
-.education {
-    display: grid;
-
-    grid-template-columns: 1fr 1fr;
-
-    gap: 20px;
-}
-
-.edu-card {
-    background: white;
-
-    border: 1px solid #dededb;
-
-    padding: 35px;
-}
-
-.edu-year {
-    font-size: 11px;
-
-    letter-spacing: 2px;
-
-    color: #999;
-}
-
-.edu-card h3 {
-    font-family: "Playfair Display", serif;
-
-    font-size: 28px;
-
-    font-weight: 400;
-
-    margin: 12px 0;
-}
-
-.edu-card p {
-    color: #666;
-
-    font-size: 14px;
-}
-
-
-/* =========================
-   SKILLS
-========================= */
-
-.skill-layout {
-    display: grid;
-
-    grid-template-columns: 1fr 1fr;
-
-    gap: 60px;
-}
-
-.skill-intro {
-    font-family: "Playfair Display", serif;
-
-    font-size: 34px;
-
-    line-height: 1.25;
-}
-
-.skill-list {
-    display: grid;
-
-    gap: 18px;
-}
-
-.skill-item {
-    background: white;
-
-    padding: 20px 25px;
-
-    border: 1px solid #ddd;
-}
-
-.skill-top {
-    display: flex;
-
-    justify-content: space-between;
-
-    margin-bottom: 10px;
-
-    font-size: 13px;
-}
-
-.skill-bar {
-    height: 4px;
-
-    background: #e5e5e3;
-}
-
-.skill-progress {
-    height: 100%;
-
-    background: #333;
-}
-
-
-/* =========================
-   VISUAL PROJECTS
-========================= */
-
-.projects {
-    display: grid;
-
-    grid-template-columns: 1fr 1fr;
-
-    gap: 25px;
-}
-
-.project {
-    background: white;
-
-    border: 1px solid #ddd;
-}
-
-.project-image {
-    height: 300px;
-
-    filter: grayscale(100%);
-}
-
-.project-content {
-    padding: 28px;
-}
-
-.project-category {
-    font-size: 10px;
-
-    letter-spacing: 3px;
-
-    color: #999;
-
-    text-transform: uppercase;
-}
-
-.project-content h3 {
-    font-family: "Playfair Display", serif;
-
-    font-size: 30px;
-
-    font-weight: 400;
-
-    margin: 10px 0;
-}
-
-.project-content p {
-    color: #666;
-
-    font-size: 14px;
-}
-
-
-/* =========================
-   PORTFOLIO INFO CARD
-========================= */
-
-.profile-board {
-
-    margin-top: 30px;
-
-    display: grid;
-
-    grid-template-columns: 1fr 1fr 1fr;
-
-    gap: 1px;
-
-    background: #ccc;
-}
-
-.board-item {
-    background: white;
-
-    padding: 30px;
-}
-
-.board-item h3 {
-    font-family: "Playfair Display", serif;
-
-    font-size: 22px;
-
-    margin-bottom: 8px;
-}
-
-.board-item p {
-    color: #666;
-
-    font-size: 13px;
-}
-
-
-/* =========================
-   FUTURE
-========================= */
-
-.future {
-    background: #222;
-
-    color: white;
-
-    padding: 75px;
-}
-
-.future h2 {
-    font-family: "Playfair Display", serif;
-
-    font-size: clamp(45px,6vw,75px);
-
-    font-weight: 400;
-
-    line-height: 1;
-
-    max-width: 800px;
-}
-
-.future h2 span {
-    color: #999;
-
-    font-style: italic;
-}
-
-.future-description {
-    max-width: 650px;
-
-    color: #aaa;
-
-    margin-top: 30px;
-}
-
-.future-goals {
-
-    margin-top: 50px;
-
-    display: grid;
-
-    grid-template-columns: 1fr 1fr;
-
-    gap: 15px;
-}
-
-.goal {
-    border-top: 1px solid #555;
-
-    padding-top: 15px;
-
-    color: #ddd;
-
-    font-size: 13px;
-}
-
-
-/* =========================
-   CONTACT
-========================= */
-
-.contact {
-    display: grid;
-
-    grid-template-columns: 1fr 1fr;
-
-    gap: 70px;
-}
-
-.contact-title {
-    font-family: "Playfair Display", serif;
-
-    font-size: 65px;
-
-    line-height: .95;
-}
-
-.contact-info {
-    display: grid;
-
-    gap: 25px;
-}
-
-.contact-item {
-    border-bottom: 1px solid #ddd;
-
-    padding-bottom: 15px;
-}
-
-.contact-item small {
-    color: #999;
-
-    text-transform: uppercase;
-
-    letter-spacing: 2px;
-}
-
-.contact-item p {
-    margin-top: 5px;
-
-    color: #555;
-}
-
-
-/* =========================
-   FOOTER
-========================= */
-
-footer {
-    border-top: 1px solid #ddd;
-
-    padding: 25px 0;
-
-    color: #888;
-
-    font-size: 11px;
-}
-
-.footer-inner {
-    display: flex;
-
-    justify-content: space-between;
-}
-
-
-/* =========================
-   MOBILE
-========================= */
-
-@media(max-width:800px) {
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Sakuni Chethana | Student Portfolio</title>
+
+  <!-- Elegant Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --cream: #f5f1e9;
+      --soft: #e9e6dd;
+      --olive: #777b69;
+      --dark: #30352d;
+      --gold: #a18a55;
+      --white: #fffdf8;
+      --gray: #777871;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "DM Sans", sans-serif;
+      background: var(--cream);
+      color: var(--dark);
+      line-height: 1.7;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    img {
+      width: 100%;
+      display: block;
+    }
+
+    .container {
+      width: 88%;
+      max-width: 1250px;
+      margin: auto;
+    }
+
+    /* ================= NAVBAR ================= */
+
+    nav {
+      height: 80px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 6%;
+      border-bottom: 1px solid rgba(48,53,45,.12);
+      position: sticky;
+      top: 0;
+      background: rgba(245,241,233,.94);
+      backdrop-filter: blur(10px);
+      z-index: 100;
+    }
+
+    .logo {
+      font-family: "Playfair Display", serif;
+      font-size: 32px;
+      color: var(--gold);
+    }
 
     .nav-links {
-        display: none;
+      display: flex;
+      gap: 35px;
+      list-style: none;
+      font-size: 11px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
     }
 
-    .hero,
-    .about-grid,
-    .skill-layout,
-    .contact {
-        grid-template-columns: 1fr;
+    .nav-links a:hover {
+      color: var(--gold);
     }
+
+    /* ================= HERO ================= */
 
     .hero {
-        gap: 40px;
+      min-height: 720px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 60px;
+      padding: 70px 0;
+    }
+
+    .hello {
+      font-family: "Playfair Display", serif;
+      font-style: italic;
+      font-size: 30px;
+      color: var(--gold);
+      margin-bottom: 5px;
     }
 
     .hero h1 {
-        font-size: 65px;
+      font-family: "Playfair Display", serif;
+      font-size: clamp(65px, 8vw, 120px);
+      line-height: .82;
+      font-weight: 500;
+      letter-spacing: -4px;
+      margin-bottom: 25px;
     }
+
+    .hero h1 span {
+      display: block;
+    }
+
+    .subtitle {
+      color: var(--gold);
+      letter-spacing: 4px;
+      font-size: 13px;
+      font-weight: 500;
+      margin-bottom: 20px;
+    }
+
+    .intro {
+      max-width: 480px;
+      color: #5f615a;
+      font-size: 15px;
+      margin-bottom: 30px;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 14px 25px;
+      background: var(--dark);
+      color: white;
+      font-size: 11px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      transition: .3s;
+    }
+
+    .button:hover {
+      background: var(--gold);
+    }
+
+    /* PHOTO */
 
     .hero-photo {
-        height: 450px;
+      position: relative;
+      max-width: 500px;
+      margin-left: auto;
     }
 
-    .facts,
-    .profile-board {
-        grid-template-columns: 1fr;
+    .hero-photo::before {
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border: 1px solid var(--gold);
+      border-radius: 250px 250px 0 0;
+      top: -12px;
+      left: -12px;
+      z-index: 0;
     }
 
-    .education,
-    .projects {
-        grid-template-columns: 1fr;
+    .hero-photo img {
+      position: relative;
+      z-index: 2;
+      height: 590px;
+      object-fit: cover;
+      object-position: center top;
+      border-radius: 250px 250px 0 0;
+      filter: saturate(.82);
     }
 
-    .skills {
-        grid-template-columns: 1fr;
+    .floating-note {
+      position: absolute;
+      right: -35px;
+      top: 40%;
+      width: 130px;
+      height: 130px;
+      border: 1px solid var(--gold);
+      border-radius: 50%;
+      background: var(--cream);
+      z-index: 5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      font-size: 10px;
+      letter-spacing: 1px;
+      padding: 20px;
     }
+
+    /* ================= STATS ================= */
+
+    .stats {
+      background: var(--olive);
+      color: white;
+      display: grid;
+      grid-template-columns: repeat(4,1fr);
+      padding: 30px 40px;
+    }
+
+    .stat {
+      text-align: center;
+      border-right: 1px solid rgba(255,255,255,.3);
+    }
+
+    .stat:last-child {
+      border-right: none;
+    }
+
+    .stat-number {
+      font-family: "Playfair Display", serif;
+      font-size: 30px;
+    }
+
+    .stat-label {
+      font-size: 10px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      opacity: .85;
+    }
+
+    /* ================= SECTION ================= */
+
+    section {
+      padding: 100px 0;
+    }
+
+    .section-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      margin-bottom: 45px;
+    }
+
+    .small-title {
+      color: var(--gold);
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    h2 {
+      font-family: "Playfair Display", serif;
+      font-size: 48px;
+      font-weight: 500;
+      line-height: 1;
+    }
+
+    /* ================= HIGHLIGHTS ================= */
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 20px;
+    }
+
+    .card {
+      min-height: 260px;
+      padding: 30px;
+      background: var(--olive);
+      color: white;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card:nth-child(2) {
+      background: var(--dark);
+    }
+
+    .card:nth-child(3) {
+      background: #ddd9ce;
+      color: var(--dark);
+    }
+
+    .card-number {
+      font-family: "Playfair Display", serif;
+      font-size: 42px;
+      opacity: .65;
+    }
+
+    .card h3 {
+      font-family: "Playfair Display", serif;
+      font-size: 25px;
+      margin-top: 35px;
+      margin-bottom: 10px;
+    }
+
+    .card p {
+      font-size: 13px;
+      opacity: .85;
+    }
+
+    /* ================= ABOUT ================= */
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 90px;
+      align-items: center;
+    }
+
+    .about-text p {
+      color: #60615b;
+      margin-bottom: 20px;
+      font-size: 15px;
+    }
+
+    .signature {
+      font-family: "Playfair Display", serif;
+      font-style: italic;
+      font-size: 28px;
+      color: var(--gold);
+      margin-top: 25px;
+    }
+
+    .about-box {
+      background: var(--soft);
+      padding: 55px;
+    }
+
+    .about-box h3 {
+      font-family: "Playfair Display", serif;
+      font-size: 30px;
+      margin-bottom: 25px;
+    }
+
+    .info-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 13px 0;
+      border-bottom: 1px solid rgba(48,53,45,.15);
+      font-size: 13px;
+    }
+
+    .info-row span:first-child {
+      color: var(--gray);
+    }
+
+    /* ================= EDUCATION ================= */
+
+    .timeline {
+      border-top: 1px solid #cfcbbf;
+    }
+
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 100px 1fr 200px;
+      gap: 30px;
+      padding: 30px 0;
+      border-bottom: 1px solid #cfcbbf;
+      align-items: center;
+    }
+
+    .year {
+      font-family: "Playfair Display", serif;
+      color: var(--gold);
+      font-size: 18px;
+    }
+
+    .timeline-item h3 {
+      font-family: "Playfair Display", serif;
+      font-size: 24px;
+      font-weight: 500;
+    }
+
+    .timeline-item p {
+      color: var(--gray);
+      font-size: 13px;
+    }
+
+    .education-type {
+      text-align: right;
+      font-size: 10px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    /* ================= SKILLS ================= */
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 18px;
+    }
+
+    .skill {
+      padding: 30px;
+      background: var(--white);
+      border: 1px solid #ddd9ce;
+    }
+
+    .skill-icon {
+      font-family: "Playfair Display", serif;
+      font-size: 28px;
+      color: var(--gold);
+    }
+
+    .skill h3 {
+      margin-top: 18px;
+      font-family: "Playfair Display", serif;
+      font-size: 22px;
+    }
+
+    .skill p {
+      color: var(--gray);
+      font-size: 13px;
+      margin-top: 8px;
+    }
+
+    /* ================= EXPERIENCE ================= */
+
+    .experience {
+      background: var(--dark);
+      color: white;
+    }
+
+    .experience .small-title {
+      color: #d2bd8b;
+    }
+
+    .experience-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+    }
+
+    .experience h2 {
+      color: white;
+    }
+
+    .experience-text {
+      color: #c8c9c1;
+      font-size: 15px;
+    }
+
+    .experience-list {
+      margin-top: 30px;
+      list-style: none;
+    }
+
+    .experience-list li {
+      padding: 13px 0;
+      border-bottom: 1px solid rgba(255,255,255,.15);
+      font-size: 13px;
+    }
+
+    /* ================= INTERESTS ================= */
+
+    .interest-grid {
+      display: grid;
+      grid-template-columns: repeat(4,1fr);
+      gap: 15px;
+    }
+
+    .interest {
+      height: 180px;
+      background: var(--soft);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 20px;
+      transition: .3s;
+    }
+
+    .interest:hover {
+      background: var(--olive);
+      color: white;
+      transform: translateY(-5px);
+    }
+
+    .interest h3 {
+      font-family: "Playfair Display", serif;
+      font-size: 23px;
+    }
+
+    /* ================= FUTURE ================= */
 
     .future {
-        padding: 45px 25px;
-    }
-
-    .future-goals {
-        grid-template-columns: 1fr;
-    }
-
-    .section-heading h2 {
-        font-size: 38px;
-    }
-
-    .contact-title {
-        font-size: 48px;
-    }
-
-}
-
-</style>
-
-</head>
-
-
-<body>
-
-
-<!-- =========================
-     NAVIGATION
-========================= -->
-
-<nav>
-
-<div class="container navbar">
-
-    <div class="logo">
-        Sakuni<span>.</span>
-    </div>
-
-    <ul class="nav-links">
-
-        <li><a href="#about">About</a></li>
-
-        <li><a href="#education">Education</a></li>
-
-        <li><a href="#skills">Skills</a></li>
-
-        <li><a href="#projects">Projects</a></li>
-
-        <li><a href="#future">Future</a></li>
-
-        <li><a href="#contact">Contact</a></li>
-
-    </ul>
-
-</div>
-
-</nav>
-
-
-
-<!-- =========================
-     HERO
-========================= -->
-
-<header>
-
-<div class="container hero">
-
-    <div>
-
-        <div class="hero-small">
-            Student Portfolio · 2026
-        </div>
-
-        <h1>
-            Sakuni<br>
-            <span>Chethana</span>
-        </h1>
-
-        <p class="hero-description">
-
-            Integrated Business Management student at
-            Dong-A University, South Korea.
-
-            Interested in business analysis, finance,
-            entrepreneurship and international business.
-
-        </p>
-
-
-        <div class="hero-buttons">
-
-            <a href="#about" class="btn btn-dark">
-                ABOUT ME
-            </a>
-
-            <a href="#projects" class="btn">
-                MY INTERESTS
-            </a>
-
-        </div>
-
-    </div>
-
-
-    <!-- Main picture -->
-
-    <img
-        class="hero-photo"
-        src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1000&q=85"
-        alt="Students collaborating">
-
-</div>
-
-</header>
-
-
-
-<!-- =========================
-     ABOUT
-========================= -->
-
-<section id="about">
-
-<div class="container">
-
-    <div class="section-heading">
-
-        <div>
-
-            <div class="section-label">
-                01 — About Me
-            </div>
-
-            <h2>
-                A little about me
-            </h2>
-
-        </div>
-
-        <div class="section-number">
-            01 / 06
-        </div>
-
-    </div>
-
-
-    <div class="about-grid">
-
-
-        <div class="about-text">
-
-            <p>
-
-                Hello, I'm <strong>Sakuni Chethana</strong>,
-                a Sri Lankan undergraduate student currently
-                studying <strong>Integrated Business Management</strong>
-                at Dong-A University in Busan, South Korea.
-
-            </p>
-
-            <br>
-
-            <p>
-
-                I am interested in understanding how businesses
-                operate, analysing problems and finding practical
-                ways to improve them.
-
-            </p>
-
-            <br>
-
-            <p>
-
-                I am naturally an introverted person.
-                I enjoy observing, listening carefully,
-                learning independently and contributing
-                responsibly to a team.
-
-            </p>
-
-        </div>
-
-
-        <img
-            class="about-photo"
-            src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=1000&q=85"
-            alt="University students">
-
-    </div>
-
-
-    <!-- Quick facts -->
-
-    <div class="facts">
-
-        <div class="fact">
-
-            <div class="fact-number">
-                01
-            </div>
-
-            <h3>
-                Sri Lanka
-            </h3>
-
-        </div>
-
-
-        <div class="fact">
-
-            <div class="fact-number">
-                02
-            </div>
-
-            <h3>
-                South Korea
-            </h3>
-
-        </div>
-
-
-        <div class="fact">
-
-            <div class="fact-number">
-                03
-            </div>
-
-            <h3>
-                Business
-            </h3>
-
-        </div>
-
-
-        <div class="fact">
-
-            <div class="fact-number">
-                04
-            </div>
-
-            <h3>
-                Finance
-            </h3>
-
-        </div>
-
-
-        <div class="fact">
-
-            <div class="fact-number">
-                05
-            </div>
-
-            <h3>
-                Analytics
-            </h3>
-
-        </div>
-
-
-        <div class="fact">
-
-            <div class="fact-number">
-                06
-            </div>
-
-            <h3>
-                Entrepreneurship
-            </h3>
-
-        </div>
-
-    </div>
-
-</div>
-
-</section>
-
-
-
-<!-- =========================
-     EDUCATION
-========================= -->
-
-<section id="education">
-
-<div class="container">
-
-    <div class="section-heading">
-
-        <div>
-
-            <div class="section-label">
-                02 — Education
-            </div>
-
-            <h2>
-                My academic journey
-            </h2>
-
-        </div>
-
-        <div class="section-number">
-            02 / 06
-        </div>
-
-    </div>
-
-
-    <div class="education">
-
-
-        <div class="edu-card">
-
-            <div class="edu-year">
-                2026 — PRESENT
-            </div>
-
-            <h3>
-                Dong-A University
-            </h3>
-
-            <p>
-                Undergraduate Student<br>
-                Integrated Business Management<br>
-                Busan, South Korea
-            </p>
-
-        </div>
-
-
-        <div class="edu-card">
-
-            <div class="edu-year">
-                2024
-            </div>
-
-            <h3>
-                GCE Advanced Level
-            </h3>
-
-            <p>
-                Commerce Stream<br>
-                Sri Lanka
-            </p>
-
-        </div>
-
-
-        <div class="edu-card">
-
-            <div class="edu-year">
-                2020
-            </div>
-
-            <h3>
-                Diploma in Psychology
-            </h3>
-
-            <p>
-                IMBS Campus<br>
-                Sri Lanka
-            </p>
-
-        </div>
-
-
-        <div class="edu-card">
-
-            <div class="edu-year">
-                CURRENT STUDIES
-            </div>
-
-            <h3>
-                Business + Technology
-            </h3>
-
-            <p>
-                Business fundamentals, communication,
-                computer programming, digital skills
-                and Korean language.
-            </p>
-
-        </div>
-
-    </div>
-
-</div>
-
-</section>
-
-
-
-<!-- =========================
-     SKILLS
-========================= -->
-
-<section id="skills">
-
-<div class="container">
-
-    <div class="section-heading">
-
-        <div>
-
-            <div class="section-label">
-                03 — Skills
-            </div>
-
-            <h2>
-                Skills I'm building
-            </h2>
-
-        </div>
-
-        <div class="section-number">
-            03 / 06
-        </div>
-
-    </div>
-
-
-    <div class="skill-layout">
-
-
-        <div>
-
-            <div class="skill-intro">
-
-                "Learning is not only about
-                collecting knowledge — it is
-                about learning how to use it."
-
-            </div>
-
-        </div>
-
-
-        <div class="skill-list">
-
-
-            <div class="skill-item">
-
-                <div class="skill-top">
-
-                    <span>
-                        Business Fundamentals
-                    </span>
-
-                    <span>
-                        85%
-                    </span>
-
-                </div>
-
-                <div class="skill-bar">
-                    <div
-                        class="skill-progress"
-                        style="width:85%">
-                    </div>
-                </div>
-
-            </div>
-
-
-            <div class="skill-item">
-
-                <div class="skill-top">
-
-                    <span>
-                        Communication
-                    </span>
-
-                    <span>
-                        85%
-                    </span>
-
-                </div>
-
-                <div class="skill-bar">
-                    <div
-                        class="skill-progress"
-                        style="width:85%">
-                    </div>
-                </div>
-
-            </div>
-
-
-            <div class="skill-item">
-
-                <div class="skill-top">
-
-                    <span>
-                        Computer & Digital Skills
-                    </span>
-
-                    <span>
-                        75%
-                    </span>
-
-                </div>
-
-                <div class="skill-bar">
-                    <div
-                        class="skill-progress"
-                        style="width:75%">
-                    </div>
-                </div>
-
-            </div>
-
-
-            <div class="skill-item">
-
-                <div class="skill-top">
-
-                    <span>
-                        English
-                    </span>
-
-                    <span>
-                        IELTS 6.0
-                    </span>
-
-                </div>
-
-                <div class="skill-bar">
-                    <div
-                        class="skill-progress"
-                        style="width:75%">
-                    </div>
-                </div>
-
-            </div>
-
-
-            <div class="skill-item">
-
-                <div class="skill-top">
-
-                    <span>
-                        Korean
-                    </span>
-
-                    <span>
-                        Beginner
-                    </span>
-
-                </div>
-
-                <div class="skill-bar">
-                    <div
-                        class="skill-progress"
-                        style="width:40%">
-                    </div>
-                </div>
-
-            </div>
-
-
-            <div class="skill-item">
-
-                <div class="skill-top">
-
-                    <span>
-                        Teamwork & Responsibility
-                    </span>
-
-                    <span>
-                        Strong
-                    </span>
-
-                </div>
-
-                <div class="skill-bar">
-                    <div
-                        class="skill-progress"
-                        style="width:85%">
-                    </div>
-                </div>
-
-            </div>
-
-
-        </div>
-
-    </div>
-
-</div>
-
-</section>
-
-
-
-<!-- =========================
-     PROJECTS / INTERESTS
-========================= -->
-
-<section id="projects">
-
-<div class="container">
-
-    <div class="section-heading">
-
-        <div>
-
-            <div class="section-label">
-                04 — Projects & Interests
-            </div>
-
-            <h2>
-                What interests me
-            </h2>
-
-        </div>
-
-        <div class="section-number">
-            04 / 06
-        </div>
-
-    </div>
-
-
-    <div class="projects">
-
-
-        <!-- Project 01 -->
-
-        <article class="project">
-
-            <img
-                class="project-image"
-                src="https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=1000&q=85"
-                alt="Business meeting">
-
-            <div class="project-content">
-
-                <div class="project-category">
-                    Business
-                </div>
-
-                <h3>
-                    Business Analysis
-                </h3>
-
-                <p>
-                    Developing analytical thinking and
-                    learning how data can support better
-                    business decisions.
-                </p>
-
-            </div>
-
-        </article>
-
-
-        <!-- Project 02 -->
-
-        <article class="project">
-
-            <img
-                class="project-image"
-                src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=1000&q=85"
-                alt="Team project">
-
-            <div class="project-content">
-
-                <div class="project-category">
-                    Entrepreneurship
-                </div>
-
-                <h3>
-                    Family Business
-                </h3>
-
-                <p>
-                    Interested in improving a family
-                    business through branding, organisation,
-                    customer experience and business strategy.
-                </p>
-
-            </div>
-
-        </article>
-
-
-        <!-- Project 03 -->
-
-        <article class="project">
-
-            <img
-                class="project-image"
-                src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1000&q=85"
-                alt="Data analysis">
-
-            <div class="project-content">
-
-                <div class="project-category">
-                    Finance
-                </div>
-
-                <h3>
-                    Financial Analysis
-                </h3>
-
-                <p>
-                    Exploring financial concepts and
-                    developing the skills needed to understand
-                    business performance and decision-making.
-                </p>
-
-            </div>
-
-        </article>
-
-
-        <!-- Project 04 -->
-
-        <article class="project">
-
-            <img
-                class="project-image"
-                src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1000&q=85"
-                alt="International students">
-
-            <div class="project-content">
-
-                <div class="project-category">
-                    International
-                </div>
-
-                <h3>
-                    Global Opportunities
-                </h3>
-
-                <p>
-                    Building an international academic and
-                    professional path through study, language
-                    learning and new experiences.
-                </p>
-
-            </div>
-
-        </article>
-
-
-    </div>
-
-</div>
-
-</section>
-
-
-
-<!-- =========================
-     PORTFOLIO SNAPSHOT
-========================= -->
-
-<section>
-
-<div class="container">
-
-    <div class="section-heading">
-
-        <div>
-
-            <div class="section-label">
-                05 — Portfolio Snapshot
-            </div>
-
-            <h2>
-                At a glance
-            </h2>
-
-        </div>
-
-        <div class="section-number">
-            05 / 06
-        </div>
-
-    </div>
-
-
-    <div class="profile-board">
-
-
-        <div class="board-item">
-
-            <h3>
-                My Strength
-            </h3>
-
-            <p>
-                Responsibility, cooperation,
-                careful observation and willingness
-                to learn.
-            </p>
-
-        </div>
-
-
-        <div class="board-item">
-
-            <h3>
-                My Personality
-            </h3>
-
-            <p>
-                Introverted, thoughtful,
-                independent and detail-oriented.
-            </p>
-
-        </div>
-
-
-        <div class="board-item">
-
-            <h3>
-                My Languages
-            </h3>
-
-            <p>
-                Sinhala · English · Korean
-            </p>
-
-        </div>
-
-
-        <div class="board-item">
-
-            <h3>
-                My Interest
-            </h3>
-
-            <p>
-                Business, finance, fashion,
-                entrepreneurship and analytics.
-            </p>
-
-        </div>
-
-
-        <div class="board-item">
-
-            <h3>
-                My Experience
-            </h3>
-
-            <p>
-                Previous cashier responsibilities
-                developed teamwork and responsibility.
-            </p>
-
-        </div>
-
-
-        <div class="board-item">
-
-            <h3>
-                My Direction
-            </h3>
-
-            <p>
-                Business Analyst · Financial Analyst
-                · Entrepreneur
-            </p>
-
-        </div>
-
-
-    </div>
-
-</div>
-
-</section>
-
-
-
-<!-- =========================
-     FUTURE
-========================= -->
-
-<section id="future">
-
-<div class="container">
-
-    <div class="future">
-
-        <div class="section-label">
-            06 — Future
-        </div>
-
-
-        <h2>
-
-            Learning today.<br>
-
-            <span>Building tomorrow.</span>
-
-        </h2>
-
-
-        <p class="future-description">
-
-            My future career direction is still developing.
-            I am particularly interested in business analysis,
-            financial analysis, entrepreneurship and
-            international business.
-
-        </p>
-
-
-        <div class="future-goals">
-
-
-            <div class="goal">
-                01 — Build strong analytical skills
-            </div>
-
-
-            <div class="goal">
-                02 — Gain practical business experience
-            </div>
-
-
-            <div class="goal">
-                03 — Improve English and Korean
-            </div>
-
-
-            <div class="goal">
-                04 — Explore European opportunities
-            </div>
-
-
-        </div>
-
-    </div>
-
-</div>
-
-</section>
-
-
-
-<!-- =========================
-     CONTACT
-========================= -->
-
-<section id="contact">
-
-<div class="container">
-
-    <div class="section-heading">
-
-        <div>
-
-            <div class="section-label">
-                Contact
-            </div>
-
-            <h2>
-                Let's connect
-            </h2>
-
-        </div>
-
-    </div>
-
-
-    <div class="contact">
-
-
-        <div>
-
-            <div class="contact-title">
-
-                Sakuni<br>
-
-                <span style="color:#888;">
-                    Thelambuge
-                </span>
-
-            </div>
-
-        </div>
-
-
-        <div class="contact-info">
-
-
-            <div class="contact-item">
-
-                <small>
-                    University
-                </small>
-
-                <p>
-                    Dong-A University
-                </p>
-
-            </div>
-
-
-            <div class="contact-item">
-
-                <small>
-                    Major
-                </small>
-
-                <p>
-                    Integrated Business Management
-                </p>
-
-            </div>
-
-
-            <div class="contact-item">
-
-                <small>
-                    Location
-                </small>
-
-                <p>
-                    Busan, South Korea
-                </p>
-
-            </div>
-
-
-            <div class="contact-item">
-
-                
-
-            <div class="contact-item">
-
-                <small>
-                    Email
-                </small>
-
-                <p>
-                    thelambugec@gmail.com
-                </p>
-
-            </div>
-
-
-        </div>
-
-    </div>
-
-</div>
-
-</section>
-
-
-
-<!-- =========================
-     FOOTER
-========================= -->
-
-<footer>
-
-<div class="container footer-inner">
-
-    <span>
-        © 2026 Sakuni Thelambuge
-    </span>
-
-    <span>
-        Student Portfolio
-    </span>
-
-</div>
-
-</footer>
-
-
-</body>
-
-</html>
-a {
-    color: inherit;
-    text-decoration: none;
-}
-
-.container {
-    width: 90%;
-    max-width: 1200px;
-    margin: auto;
-}
-
-/* =========================
-   NAVIGATION
-========================= */
-
-nav {
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-
-    background: rgba(238,238,236,0.92);
-    backdrop-filter: blur(12px);
-
-    border-bottom: 1px solid #d5d5d2;
-}
-
-.nav {
-    height: 72px;
-
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.logo {
-    font-family: "Playfair Display", serif;
-    font-size: 25px;
-}
-
-.logo span {
-    color: #999;
-}
-
-.nav-links {
-    display: flex;
-    gap: 28px;
-
-    list-style: none;
-
-    font-size: 11px;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-
-    color: #666;
-}
-
-.nav-links a:hover {
-    color: #000;
-}
-
-/* =========================
-   HERO
-========================= */
-
-.hero {
-    min-height: 92vh;
-
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-
-    gap: 70px;
-
-    align-items: center;
-
-    padding: 80px 0;
-}
-
-.hero-left {
-    position: relative;
-}
-
-.eyebrow {
-    font-size: 10px;
-    letter-spacing: 4px;
-    color: #888;
-    text-transform: uppercase;
-    margin-bottom: 25px;
-}
-
-.hero h1 {
-    font-family: "Playfair Display", serif;
-
-    font-size: clamp(70px, 10vw, 125px);
-
-    font-weight: 400;
-
-    line-height: .82;
-
-    letter-spacing: -7px;
-}
-
-.hero h1 span {
-    font-style: italic;
-    color: #888;
-}
-
-.hero-subtitle {
-    margin-top: 35px;
-
-    max-width: 500px;
-
-    font-size: 15px;
-
-    line-height: 1.8;
-
-    color: #666;
-}
-
-.hero-location {
-    margin-top: 30px;
-
-    display: flex;
-    gap: 12px;
-    align-items: center;
-
-    font-size: 11px;
-
-    color: #555;
-
-    text-transform: uppercase;
-
-    letter-spacing: 2px;
-}
-
-.dot {
-    width: 6px;
-    height: 6px;
-
-    border-radius: 50%;
-
-    background: #222;
-}
-
-.hero-buttons {
-    margin-top: 35px;
-
-    display: flex;
-    gap: 10px;
-}
-
-.button {
-    padding: 13px 22px;
-
-    border: 1px solid #222;
-
-    font-size: 10px;
-
-    letter-spacing: 1.5px;
-
-    transition: .3s;
-}
-
-.button:hover {
-    background: #222;
-    color: white;
-}
-
-.button-dark {
-    background: #222;
-    color: white;
-}
-
-/* HERO IMAGE */
-
-.hero-right {
-    position: relative;
-
-    min-height: 620px;
-
-    display: flex;
-
-    justify-content: center;
-
-    align-items: center;
-}
-
-.hero-image-frame {
-    width: 78%;
-    height: 560px;
-
-    background: white;
-
-    padding: 18px;
-
-    box-shadow: 0 25px 50px rgba(0,0,0,.12);
-
-    transform: rotate(2deg);
-
-    position: relative;
-    z-index: 2;
-}
-
-.hero-image {
-    height: 100%;
-
-    filter: grayscale(100%);
-}
-
-.hero-card {
-    position: absolute;
-
-    width: 210px;
-
-    background: white;
-
-    padding: 25px;
-
-    box-shadow: 0 15px 35px rgba(0,0,0,.12);
-
-    bottom: 30px;
-    left: 0;
-
-    z-index: 5;
-}
-
-.hero-card-number {
-    font-size: 10px;
-    color: #999;
-}
-
-.hero-card h3 {
-    font-family: "Playfair Display", serif;
-
-    font-size: 25px;
-
-    font-weight: 400;
-
-    margin: 8px 0;
-}
-
-.hero-card p {
-    font-size: 10px;
-    color: #777;
-}
-
-/* =========================
-   SECTION COMMON
-========================= */
-
-section {
-    padding: 120px 0;
-}
-
-.section-top {
-    display: flex;
-
-    justify-content: space-between;
-
-    align-items: end;
-
-    border-bottom: 1px solid #d1d1ce;
-
-    padding-bottom: 18px;
-
-    margin-bottom: 55px;
-}
-
-.section-label {
-    font-size: 10px;
-
-    letter-spacing: 3px;
-
-    text-transform: uppercase;
-
-    color: #888;
-}
-
-.section-title {
-    font-family: "Playfair Display", serif;
-
-    font-size: clamp(42px, 5vw, 68px);
-
-    font-weight: 400;
-
-    line-height: 1;
-
-    margin-top: 8px;
-}
-
-.section-number {
-    font-size: 11px;
-    color: #999;
-}
-
-/* =========================
-   ABOUT
-========================= */
-
-.about-grid {
-    display: grid;
-
-    grid-template-columns: .85fr 1.15fr;
-
-    gap: 80px;
-
-    align-items: center;
-}
-
-.about-image {
-    height: 500px;
-
-    filter: grayscale(100%);
-}
-
-.about-text {
-    font-size: 19px;
-
-    line-height: 1.8;
-
-    color: #555;
-}
-
-.about-text strong {
-    color: #111;
-}
-
-.about-small {
-    margin-top: 35px;
-
-    display: grid;
-
-    grid-template-columns: 1fr 1fr;
-
-    gap: 15px;
-}
-
-.about-box {
-    background: white;
-
-    padding: 22px;
-
-    border: 1px solid #ddd;
-}
-
-.about-box small {
-    font-size: 9px;
-
-    letter-spacing: 2px;
-
-    color: #999;
-
-    text-transform: uppercase;
-}
-
-.about-box h3 {
-    margin-top: 8px;
-
-    font-family: "Playfair Display", serif;
-
-    font-size: 22px;
-
-    font-weight: 400;
-}
-
-/* =========================
-   TABLE OF CONTENTS
-========================= */
-
-.contents {
-    background: #222;
-
-    color: white;
-
-    padding: 70px;
-}
-
-.contents-header {
-    display: flex;
-    justify-content: space-between;
-
-    margin-bottom: 45px;
-}
-
-.contents h2 {
-    font-family: "Playfair Display", serif;
-
-    font-size: 48px;
-
-    font-weight: 400;
-}
-
-.contents-list {
-    display: grid;
-
-    grid-template-columns: 1fr 1fr;
-
-    gap: 0 50px;
-}
-
-.contents-item {
-    border-top: 1px solid #555;
-
-    padding: 18px 0;
-
-    display: flex;
-
-    justify-content: space-between;
-
-    font-size: 12px;
-
-    color: #ddd;
-}
-
-.contents-item span {
-    color: #888;
-}
-
-/* =========================
-   EDUCATION
-========================= */
-
-.education-grid {
-    display: grid;
-
-    grid-template-columns: 1fr 1fr;
-
-    gap: 20px;
-}
-
-.education-card {
-    background: white;
-
-    padding: 35px;
-
-    min-height: 230px;
-
-    border: 1px solid #ddd;
-
-    position: relative;
-}
-
-.education-card:nth-child(2) {
-    margin-top: 45px;
-}
-
-.education-card:nth-child(4) {
-    margin-top: 45px;
-}
-
-.year {
-    font-size: 10px;
-
-    color: #999;
-
-    letter-spacing: 3px;
-}
-
-.education-card h3 {
-    font-family: "Playfair Display", serif;
-
-    font-size: 31px;
-
-    font-weight: 400;
-
-    margin: 18px 0 10px;
-}
-
-.education-card p {
-    font-size: 13px;
-
-    color: #666;
-
-    line-height: 1.7;
-}
-
-/* =========================
-   ACADEMIC HIGHLIGHTS
-========================= */
-
-.highlight-area {
-    margin-top: 70px;
-
-    display: grid;
-
-    grid-template-columns: 1fr 1fr;
-
-    gap: 70px;
-}
-
-.highlight-title {
-    font-family: "Playfair Display", serif;
-
-    font-size: 40px;
-
-    font-weight: 400;
-}
-
-.highlight-text {
-    margin-top: 20px;
-
-    font-size: 14px;
-
-    color: #666;
-
-    line-height: 1.8;
-}
-
-.grades {
-    display: grid;
-
-    gap: 10px;
-}
-
-.grade {
-    background: white;
-
-    padding: 17px 20px;
-
-    border: 1px solid #ddd;
-
-    display: flex;
-
-    justify-content: space-between;
-
-    font-size: 12px;
-}
-
-.grade strong {
-    font-family: "Playfair Display", serif;
-
-    font-size: 17px;
-}
-
-/* =========================
-   SKILLS
-========================= */
-
-.skills-layout {
-    display: grid;
-
-    grid-template-columns: .8fr 1.2fr;
-
-    gap: 70px;
-}
-
-.skills-intro {
-    font-family: "Playfair Display", serif;
-
-    font-size: 42px;
-
-    line-height: 1.2;
-}
-
-.skill-list {
-    display: grid;
-
-    grid-template-columns: 1fr 1fr;
-
-    gap: 12px;
-}
-
-.skill {
-    background: white;
-
-    padding: 28px;
-
-    border: 1px solid #ddd;
-
-    min-height: 145px;
-}
-
-.skill-number {
-    color: #aaa;
-
-    font-size: 10px;
-}
-
-.skill h3 {
-    font-family: "Playfair Display", serif;
-
-    font-weight: 400;
-
-    font-size: 24px;
-
-    margin: 12px 0 7px;
-}
-
-.skill p {
-    font-size: 11px;
-
-    color: #777;
-}
-
-/* =========================
-   EXPERIENCE
-========================= */
-
-.experience {
-    display: grid;
-
-    grid-template-columns: 1fr 1fr;
-
-    gap: 70px;
-
-    align-items: center;
-}
-
-.experience-image {
-    height: 500px;
-
-    filter: grayscale(100%);
-}
-
-.experience-text h2 {
-    font-family: "Playfair Display", serif;
-
-    font-size: 55px;
-
-    font-weight: 400;
-
-    line-height: 1;
-}
-
-.experience-text h2 span {
-    color: #888;
-
-    font-style: italic;
-}
-
-.experience-text > p {
-    margin-top: 25px;
-
-    color: #666;
-
-    line-height: 1.8;
-
-    font-size: 14px;
-}
-
-.experience-points {
-    margin-top: 30px;
-
-    display: grid;
-
-    gap: 10px;
-}
-
-.experience-point {
-    padding: 15px;
-
-    border-top: 1px solid #ccc;
-
-    font-size: 12px;
-}
-
-.experience-point span {
-    color: #999;
-
-    margin-right: 15px;
-}
-
-/* =========================
-   FAMILY BUSINESS
-========================= */
-
-.family {
-    background: white;
-
-    padding: 65px;
-
-    display: grid;
-
-    grid-template-columns: 1fr 1fr;
-
-    gap: 70px;
-
-    align-items: center;
-}
-
-.family-image {
-    height: 430px;
-
-    filter: grayscale(100%);
-}
-
-.family-title {
-    font-family: "Playfair Display", serif;
-
-    font-size: 58px;
-
-    font-weight: 400;
-
-    line-height: 1;
-}
-
-.family-title span {
-    color: #888;
-
-    font-style: italic;
-}
-
-.family-description {
-    margin-top: 25px;
-
-    font-size: 14px;
-
-    color: #666;
-
-    line-height: 1.8;
-}
-
-.family-tags {
-    margin-top: 30px;
-
-    display: flex;
-
-    flex-wrap: wrap;
-
-    gap: 8px;
-}
-
-.tag {
-    border: 1px solid #ccc;
-
-    padding: 9px 13px;
-
-    font-size: 10px;
-
-    text-transform: uppercase;
-
-    letter-spacing: 1px;
-}
-
-/* =========================
-   INTERESTS
-========================= */
-
-.interests {
-    display: grid;
-
-    grid-template-columns: repeat(4,1fr);
-
-    gap: 15px;
-}
-
-.interest {
-    background: white;
-
-    min-height: 310px;
-
-    padding: 28px;
-
-    position: relative;
-
-    overflow: hidden;
-
-    border: 1px solid #ddd;
-}
-
-.interest-image {
-    height: 155px;
-
-    margin: -28px -28px 25px;
-
-    width: calc(100% + 56px);
-
-    filter: grayscale(100%);
-}
-
-.interest-number {
-    color: #999;
-
-    font-size: 10px;
-}
-
-.interest h3 {
-    font-family: "Playfair Display", serif;
-
-    font-size: 24px;
-
-    font-weight: 400;
-
-    margin-top: 10px;
-}
-
-.interest p {
-    margin-top: 10px;
-
-    font-size: 11px;
-
-    color: #777;
-
-    line-height: 1.6;
-}
-
-/* =========================
-   FUTURE
-========================= */
-
-.future-section {
-    background: #222;
-
-    color: white;
-
-    padding: 90px;
-}
-
-.future-section .section-label {
-    color: #888;
-}
-
-.future-title {
-    font-family: "Playfair Display", serif;
-
-    font-size: clamp(55px,8vw,105px);
-
-    font-weight: 400;
-
-    line-height: .95;
-
-    margin-top: 30px;
-}
-
-.future-title span {
-    color: #777;
-
-    font-style: italic;
-}
-
-.future-description {
-    max-width: 650px;
-
-    margin-top: 35px;
-
-    color: #aaa;
-
-    font-size: 14px;
-
-    line-height: 1.8;
-}
-
-.future-grid {
-    margin-top: 60px;
-
-    display: grid;
-
-    grid-template-columns: repeat(3,1fr);
-
-    gap: 25px;
-}
-
-.future-item {
-    border-top: 1px solid #555;
-
-    padding-top: 18px;
-}
-
-.future-item small {
-    color: #777;
-
-    font-size: 10px;
-}
-
-.future-item h3 {
-    font-family: "Playfair Display", serif;
-
-    font-size: 22px;
-
-    font-weight: 400;
-
-    margin-top: 8px;
-}
-
-/* =========================
-   CONTACT
-========================= */
-
-.contact-grid {
-    display: grid;
-
-    grid-template-columns: 1fr 1fr;
-
-    gap: 100px;
-
-    align-items: center;
-}
-
-.contact-name {
-    font-family: "Playfair Display", serif;
-
-    font-size: clamp(60px,8vw,100px);
-
-    line-height: .85;
-
-    font-weight: 400;
-}
-
-.contact-name span {
-    color: #888;
-
-    font-style: italic;
-}
-
-.contact-details {
-    display: grid;
-
-    gap: 25px;
-}
-
-.contact-detail {
-    border-bottom: 1px solid #ccc;
-
-    padding-bottom: 15px;
-}
-
-.contact-detail small {
-    font-size: 9px;
-
-    color: #999;
-
-    letter-spacing: 2px;
-
-    text-transform: uppercase;
-}
-
-.contact-detail p {
-    margin-top: 5px;
-
-    font-size: 13px;
-
-    color: #555;
-}
-
-/* =========================
-   FOOTER
-========================= */
-
-footer {
-    border-top: 1px solid #d1d1ce;
-
-    padding: 25px 0;
-
-    font-size: 10px;
-
-    color: #888;
-}
-
-.footer {
-    display: flex;
-
-    justify-content: space-between;
-}
-
-/* =========================
-   MOBILE
-========================= */
-
-@media(max-width:850px) {
-
-    .nav-links {
-        display: none;
-    }
-
-    .hero,
-    .about-grid,
-    .highlight-area,
-    .skills-layout,
-    .experience,
-    .family,
-    .contact-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .hero {
-        padding-top: 50px;
-    }
-
-    .hero h1 {
-        font-size: 75px;
-    }
-
-    .hero-right {
-        min-height: 500px;
-    }
-
-    .hero-image-frame {
-        width: 90%;
-        height: 470px;
-    }
-
-    .contents {
-        padding: 40px 25px;
-    }
-
-    .contents-list {
-        grid-template-columns: 1fr;
-    }
-
-    .education-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .education-card:nth-child(2),
-    .education-card:nth-child(4) {
-        margin-top: 0;
-    }
-
-    .skill-list {
-        grid-template-columns: 1fr;
-    }
-
-    .interests {
-        grid-template-columns: 1fr 1fr;
-    }
-
-    .family {
-        padding: 30px;
-    }
-
-    .future-section {
-        padding: 50px 25px;
+      background: #ddd9ce;
     }
 
     .future-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+    }
+
+    .future-text {
+      font-size: 17px;
+      color: #55574f;
+    }
+
+    .goals {
+      list-style: none;
+    }
+
+    .goals li {
+      padding: 15px 0;
+      border-bottom: 1px solid #bdb9ad;
+      font-size: 14px;
+    }
+
+    .goals li::before {
+      content: "✦";
+      color: var(--gold);
+      margin-right: 15px;
+    }
+
+    /* ================= CONTACT ================= */
+
+    .contact {
+      text-align: center;
+    }
+
+    .contact h2 {
+      font-size: clamp(50px,7vw,90px);
+      margin: 20px 0;
+    }
+
+    .contact p {
+      max-width: 550px;
+      margin: 0 auto 30px;
+      color: var(--gray);
+    }
+
+    .contact-links {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      margin-top: 35px;
+      font-size: 12px;
+      letter-spacing: 1px;
+    }
+
+    /* ================= FOOTER ================= */
+
+    footer {
+      background: var(--olive);
+      color: white;
+      padding: 25px 6%;
+      display: flex;
+      justify-content: space-between;
+      font-size: 10px;
+      letter-spacing: 1px;
+    }
+
+    /* ================= MOBILE ================= */
+
+    @media(max-width: 850px) {
+
+      .nav-links {
+        display: none;
+      }
+
+      .hero {
         grid-template-columns: 1fr;
-    }
+        padding-top: 50px;
+      }
 
-    .contact-grid {
-        gap: 50px;
-    }
-}
+      .hero h1 {
+        font-size: 70px;
+      }
 
-@media(max-width:550px) {
+      .hero-photo {
+        margin: auto;
+        width: 90%;
+      }
 
-    section {
-        padding: 75px 0;
-    }
+      .hero-photo img {
+        height: 500px;
+      }
 
-    .interests {
+      .stats {
+        grid-template-columns: repeat(2,1fr);
+        gap: 25px;
+      }
+
+      .stat:nth-child(2) {
+        border-right: none;
+      }
+
+      .cards,
+      .skills-grid,
+      .interest-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .about-grid,
+      .experience-content,
+      .future-grid {
         grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .timeline-item {
+        grid-template-columns: 70px 1fr;
+      }
+
+      .education-type {
+        display: none;
+      }
     }
 
-    .about-small {
+    @media(max-width: 550px) {
+
+      .container {
+        width: 90%;
+      }
+
+      section {
+        padding: 70px 0;
+      }
+
+      h2 {
+        font-size: 38px;
+      }
+
+      .hero h1 {
+        font-size: 60px;
+      }
+
+      .cards,
+      .skills-grid,
+      .interest-grid {
         grid-template-columns: 1fr;
+      }
+
+      .stats {
+        padding: 25px 15px;
+      }
+
+      .floating-note {
+        right: -15px;
+      }
+
+      footer {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+      }
     }
-
-    .hero h1 {
-        font-size: 65px;
-    }
-
-    .hero-image-frame {
-        height: 400px;
-    }
-
-}
-
-</style>
+  </style>
 </head>
-
 
 <body>
 
-
-<!-- =========================
-     NAVIGATION
-========================= -->
+<!-- ================= NAVIGATION ================= -->
 
 <nav>
+  <div class="logo">S</div>
 
-<div class="container nav">
-
-    <div class="logo">
-        Sakuni<span>.</span>
-    </div>
-
-    <ul class="nav-links">
-        <li><a href="#about">About</a></li>
-        <li><a href="#education">Education</a></li>
-        <li><a href="#skills">Skills</a></li>
-        <li><a href="#experience">Experience</a></li>
-        <li><a href="#interests">Interests</a></li>
-        <li><a href="#future">Future</a></li>
-    </ul>
-
-</div>
-
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#skills">Expertise</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#future">Future</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
 </nav>
 
 
-<!-- =========================
-     COVER
-========================= -->
+<!-- ================= HERO ================= -->
 
-<header>
+<header class="container hero">
 
-<div class="container hero">
+  <div>
 
-    <div class="hero-left">
+    <div class="hello">Hello, I'm</div>
 
-        <div class="eyebrow">
-            Student Portfolio · 2026
-        </div>
+    <h1>
+      SAKUNI
+      <span>CHETHANA</span>
+    </h1>
 
-        <h1>
-            Sakuni<br>
-            <span>Chethana</span>
-        </h1>
-
-        <p class="hero-subtitle">
-
-            Integrated Business Management student
-            exploring business analysis, finance,
-            entrepreneurship and international
-            opportunities.
-
-        </p>
-
-        <div class="hero-location">
-
-            <span class="dot"></span>
-
-            Sri Lanka · South Korea
-
-        </div>
-
-        <div class="hero-buttons">
-
-            <a href="#about" class="button button-dark">
-                EXPLORE PROFILE
-            </a>
-
-            <a href="#contact" class="button">
-                CONTACT
-            </a>
-
-        </div>
-
+    <div class="subtitle">
+      BUSINESS MANAGEMENT STUDENT
     </div>
 
+    <p class="intro">
+      An undergraduate student at Dong-A University with an interest
+      in business analysis, finance, entrepreneurship and fashion business.
+      I am building my knowledge, skills and international perspective
+      through education and practical experience.
+    </p>
 
-    <div class="hero-right">
+    <a href="#about" class="button">
+      Explore My Portfolio →
+    </a>
 
-        <div class="hero-image-frame">
-
-            <img
-                class="hero-image"
-                src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1000&q=85"
-                alt="University students">
-
-        </div>
+  </div>
 
 
-        <div class="hero-card">
+  <div class="hero-photo">
 
-            <div class="hero-card-number">
-                01 / PROFILE
-            </div>
+    <!-- CHANGE profile.jpg TO YOUR PHOTO FILE NAME -->
+    <img src="profile.jpg" alt="Sakuni Chethana">
 
-            <h3>
-                Business
-                Student
-            </h3>
-
-            <p>
-                Dong-A University<br>
-                Busan, South Korea
-            </p>
-
-        </div>
-
+    <div class="floating-note">
+      BUSINESS<br>
+      THINKING<br>
+      CREATES<br>
+      OPPORTUNITY
     </div>
 
-</div>
+  </div>
 
 </header>
 
 
-<!-- =========================
-     ABOUT
-========================= -->
+<!-- ================= STATS ================= -->
+
+<div class="container">
+
+  <div class="stats">
+
+    <div class="stat">
+      <div class="stat-number">01</div>
+      <div class="stat-label">Semester Completed</div>
+    </div>
+
+    <div class="stat">
+      <div class="stat-number">17</div>
+      <div class="stat-label">Credits Completed</div>
+    </div>
+
+    <div class="stat">
+      <div class="stat-number">5+</div>
+      <div class="stat-label">Academic Strengths</div>
+    </div>
+
+    <div class="stat">
+      <div class="stat-number">03</div>
+      <div class="stat-label">Languages / Learning Areas</div>
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- ================= ACADEMIC HIGHLIGHTS ================= -->
+
+<section id="highlights">
+
+  <div class="container">
+
+    <div class="section-top">
+
+      <div>
+        <div class="small-title">Academic Highlights ✦</div>
+        <h2>What I'm Building</h2>
+      </div>
+
+      <span class="small-title">
+        Student Portfolio
+      </span>
+
+    </div>
+
+
+    <div class="cards">
+
+      <div class="card">
+
+        <div class="card-number">01</div>
+
+        <h3>Business</h3>
+
+        <p>
+          Strong foundation in business principles with a growing
+          interest in business analysis and strategy.
+        </p>
+
+      </div>
+
+
+      <div class="card">
+
+        <div class="card-number">02</div>
+
+        <h3>Communication</h3>
+
+        <p>
+          Developing professional communication skills through
+          university studies and practical experiences.
+        </p>
+
+      </div>
+
+
+      <div class="card">
+
+        <div class="card-number">03</div>
+
+        <h3>Digital Skills</h3>
+
+        <p>
+          Building computer, information technology and programming
+          knowledge for modern business environments.
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- ================= ABOUT ================= -->
 
 <section id="about">
 
-<div class="container">
+  <div class="container about-grid">
 
-    <div class="section-top">
+    <div class="about-text">
 
-        <div>
+      <div class="small-title">About Me ✦</div>
 
-            <div class="section-label">
-                01 — About Me
-            </div>
+      <h2>Curious.<br>Responsible.<br>Growing.</h2>
 
-            <h2 class="section-title">
-                Hello, I'm Sakuni
-            </h2>
+      <br>
 
-        </div>
+      <p>
+        I am Sakuni Chethana, an undergraduate student from Sri Lanka
+        currently studying Integrated Business Management at Dong-A
+        University in Busan, South Korea.
+      </p>
 
-        <div class="section-number">
-            01 / 08
-        </div>
+      <p>
+        I am interested in understanding how businesses work,
+        how decisions are made and how organizations can improve.
+        My interests include business analysis, finance,
+        entrepreneurship and fashion business.
+      </p>
 
-    </div>
+      <p>
+        I believe that learning is a continuous process.
+        My goal is to combine academic knowledge with practical
+        experience and develop an international career in the future.
+      </p>
 
-
-    <div class="about-grid">
-
-        <img
-            class="about-image"
-            src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1000&q=85"
-            alt="Students studying">
-
-
-        <div>
-
-            <div class="about-text">
-
-                <p>
-
-                    I am a <strong>Sri Lankan undergraduate student</strong>
-                    currently studying Integrated Business Management
-                    at <strong>Dong-A University</strong> in Busan,
-                    South Korea.
-
-                </p>
-
-                <br>
-
-                <p>
-
-                    I am interested in understanding how businesses
-                    operate, analysing problems and finding practical
-                    ways to improve business performance.
-
-                </p>
-
-                <br>
-
-                <p>
-
-                    I am naturally <strong>introverted, thoughtful
-                    and responsible</strong>. I enjoy observing,
-                    learning independently and contributing to a team.
-
-                </p>
-
-            </div>
-
-
-            <div class="about-small">
-
-                <div class="about-box">
-
-                    <small>
-                        Nationality
-                    </small>
-
-                    <h3>
-                        Sri Lankan
-                    </h3>
-
-                </div>
-
-
-                <div class="about-box">
-
-                    <small>
-                        Current City
-                    </small>
-
-                    <h3>
-                        Busan
-                    </h3>
-
-                </div>
-
-
-                <div class="about-box">
-
-                    <small>
-                        Major
-                    </small>
-
-                    <h3>
-                        IBM
-                    </h3>
-
-                </div>
-
-
-                <div class="about-box">
-
-                    <small>
-                        Focus
-                    </small>
-
-                    <h3>
-                        Business
-                    </h3>
-
-                </div>
-
-            </div>
-
-        </div>
+      <div class="signature">
+        Sakuni Chethana
+      </div>
 
     </div>
 
-</div>
+
+    <div class="about-box">
+
+      <h3>Profile</h3>
+
+      <div class="info-row">
+        <span>Name</span>
+        <strong>Sakuni Chethana</strong>
+      </div>
+
+      <div class="info-row">
+        <span>Nationality</span>
+        <strong>Sri Lankan</strong>
+      </div>
+
+      <div class="info-row">
+        <span>University</span>
+        <strong>Dong-A University</strong>
+      </div>
+
+      <div class="info-row">
+        <span>Major</span>
+        <strong>Integrated Business Management</strong>
+      </div>
+
+      <div class="info-row">
+        <span>Location</span>
+        <strong>Busan, South Korea</strong>
+      </div>
+
+      <div class="info-row">
+        <span>Career Interest</span>
+        <strong>Business Analysis</strong>
+      </div>
+
+    </div>
+
+  </div>
 
 </section>
 
 
-<!-- =========================
-     TABLE OF CONTENTS
-========================= -->
-
-<section>
-
-<div class="container">
-
-<div class="contents">
-
-    <div class="contents-header">
-
-        <h2>
-            Table of<br>
-            Contents
-        </h2>
-
-        <div class="section-number">
-            PORTFOLIO / 2026
-        </div>
-
-    </div>
-
-
-    <div class="contents-list">
-
-        <div class="contents-item">
-            <span>01</span>
-            About Me
-            <span>01</span>
-        </div>
-
-        <div class="contents-item">
-            <span>05</span>
-            Experience
-            <span>05</span>
-        </div>
-
-        <div class="contents-item">
-            <span>02</span>
-            Education
-            <span>02</span>
-        </div>
-
-        <div class="contents-item">
-            <span>06</span>
-            Family Business
-            <span>06</span>
-        </div>
-
-        <div class="contents-item">
-            <span>03</span>
-            Academic Highlights
-            <span>03</span>
-        </div>
-
-        <div class="contents-item">
-            <span>07</span>
-            Interests
-            <span>07</span>
-        </div>
-
-        <div class="contents-item">
-            <span>04</span>
-            Skills
-            <span>04</span>
-        </div>
-
-        <div class="contents-item">
-            <span>08</span>
-            Future
-            <span>08</span>
-        </div>
-
-    </div>
-
-</div>
-
-</div>
-
-</section>
-
-
-<!-- =========================
-     EDUCATION
-========================= -->
+<!-- ================= EDUCATION ================= -->
 
 <section id="education">
 
-<div class="container">
+  <div class="container">
 
     <div class="section-top">
 
+      <div>
+        <div class="small-title">Education</div>
+        <h2>My Learning Journey</h2>
+      </div>
+
+    </div>
+
+
+    <div class="timeline">
+
+
+      <div class="timeline-item">
+
+        <div class="year">2026 —</div>
+
         <div>
-
-            <div class="section-label">
-                02 — Education
-            </div>
-
-            <h2 class="section-title">
-                My academic journey
-            </h2>
-
+          <h3>Integrated Business Management</h3>
+          <p>
+            Dong-A University · Busan, South Korea
+          </p>
         </div>
 
-        <div class="section-number">
-            02 / 08
+        <div class="education-type">
+          Undergraduate
         </div>
 
-    </div>
+      </div>
 
 
-    <div class="education-grid">
+      <div class="timeline-item">
 
+        <div class="year">2020</div>
 
-        <div class="education-card">
-
-            <div class="year">
-                2026 — PRESENT
-            </div>
-
-            <h3>
-                Dong-A University
-            </h3>
-
-            <p>
-
-                Integrated Business Management<br>
-                Undergraduate Student<br>
-                Busan, South Korea
-
-            </p>
-
+        <div>
+          <h3>Diploma in Psychology</h3>
+          <p>
+            Additional academic learning in psychology and human behaviour.
+          </p>
         </div>
 
-
-        <div class="education-card">
-
-            <div class="year">
-                2024
-            </div>
-
-            <h3>
-                GCE Advanced Level
-            </h3>
-
-            <p>
-
-                Commerce Stream<br>
-                Sri Lanka
-
-            </p>
-
+        <div class="education-type">
+          Diploma
         </div>
 
+      </div>
 
-        <div class="education-card">
 
-            <div class="year">
-                2020
-            </div>
+      <div class="timeline-item">
 
-            <h3>
-                Diploma in English
-            </h3>
+        <div class="year">2020</div>
 
-            <p>
-
-                IMBS Campus<br>
-                Sri Lanka
-
-            </p>
-
+        <div>
+          <h3>Diploma in English</h3>
+          <p>
+            IMBS Campus · Sri Lanka
+          </p>
         </div>
 
-
-        <div class="education-card">
-
-            <div class="year">
-                CURRENT
-            </div>
-
-            <h3>
-                Learning
-            </h3>
-
-            <p>
-
-                Business · Communication · Programming
-                · Computer Information · Korean Language
-
-            </p>
-
+        <div class="education-type">
+          Diploma
         </div>
+
+      </div>
+
+
+      <div class="timeline-item">
+
+        <div class="year">2024</div>
+
+        <div>
+          <h3>GCE Advanced Level</h3>
+          <p>
+            Commerce Stream · Sri Lanka
+          </p>
+        </div>
+
+        <div class="education-type">
+          Secondary Education
+        </div>
+
+      </div>
 
 
     </div>
 
-</div>
+  </div>
 
 </section>
 
 
-<!-- =========================
-     ACADEMIC HIGHLIGHTS
-========================= -->
-
-<section>
-
-<div class="container">
-
-    <div class="section-top">
-
-        <div>
-
-            <div class="section-label">
-                03 — Academic Highlights
-            </div>
-
-            <h2 class="section-title">
-                Learning in progress
-            </h2>
-
-        </div>
-
-        <div class="section-number">
-            03 / 08
-        </div>
-
-    </div>
-
-
-    <div class="highlight-area">
-
-
-        <div>
-
-            <h3 class="highlight-title">
-                Building a strong foundation in business.
-            </h3>
-
-            <p class="highlight-text">
-
-                My first semester at Dong-A University has
-                helped me develop knowledge in business,
-                communication, digital technology and
-                Korean language.
-
-            </p>
-
-        </div>
-
-
-        <div class="grades">
-
-            <div class="grade">
-                <span>Principles of Business</span>
-                <strong>A+</strong>
-            </div>
-
-            <div class="grade">
-                <span>Practical Korean I</span>
-                <strong>A+</strong>
-            </div>
-
-            <div class="grade">
-                <span>Business Communication</span>
-                <strong>A+</strong>
-            </div>
-
-            <div class="grade">
-                <span>Basic Computer Information</span>
-                <strong>A</strong>
-            </div>
-
-            <div class="grade">
-                <span>Computer Programming</span>
-                <strong>A</strong>
-            </div>
-
-            <div class="grade">
-                <span>First Semester</span>
-                <strong>17 Credits</strong>
-            </div>
-
-        </div>
-
-    </div>
-
-</div>
-
-</section>
-
-
-<!-- =========================
-     SKILLS
-========================= -->
+<!-- ================= SKILLS ================= -->
 
 <section id="skills">
 
-<div class="container">
+  <div class="container">
 
     <div class="section-top">
 
-        <div>
-
-            <div class="section-label">
-                04 — Skills
-            </div>
-
-            <h2 class="section-title">
-                Skills I'm building
-            </h2>
-
-        </div>
-
-        <div class="section-number">
-            04 / 08
-        </div>
+      <div>
+        <div class="small-title">Expertise ✦</div>
+        <h2>What I Bring</h2>
+      </div>
 
     </div>
 
 
-    <div class="skills-layout">
+    <div class="skills-grid">
 
 
-        <div>
-
-            <div class="skills-intro">
-
-                Knowledge grows
-                through curiosity,
-                practice and
-                experience.
-
-            </div>
-
-        </div>
+      <div class="skill">
+        <div class="skill-icon">01</div>
+        <h3>Business</h3>
+        <p>
+          Business fundamentals, organizational thinking
+          and strategic awareness.
+        </p>
+      </div>
 
 
-        <div class="skill-list">
+      <div class="skill">
+        <div class="skill-icon">02</div>
+        <h3>Analysis</h3>
+        <p>
+          Interested in understanding information,
+          identifying patterns and supporting decisions.
+        </p>
+      </div>
 
 
-            <div class="skill">
-
-                <div class="skill-number">
-                    01
-                </div>
-
-                <h3>
-                    Business
-                </h3>
-
-                <p>
-                    Business fundamentals,
-                    communication and problem solving.
-                </p>
-
-            </div>
+      <div class="skill">
+        <div class="skill-icon">03</div>
+        <h3>Communication</h3>
+        <p>
+          Professional communication, teamwork
+          and interpersonal skills.
+        </p>
+      </div>
 
 
-            <div class="skill">
-
-                <div class="skill-number">
-                    02
-                </div>
-
-                <h3>
-                    Analysis
-                </h3>
-
-                <p>
-                    Analytical thinking and
-                    interest in data-driven decisions.
-                </p>
-
-            </div>
+      <div class="skill">
+        <div class="skill-icon">04</div>
+        <h3>Digital Skills</h3>
+        <p>
+          Computer information, programming fundamentals
+          and digital learning.
+        </p>
+      </div>
 
 
-            <div class="skill">
-
-                <div class="skill-number">
-                    03
-                </div>
-
-                <h3>
-                    Digital
-                </h3>
-
-                <p>
-                    Computer skills, programming
-                    fundamentals and GitHub.
-                </p>
-
-            </div>
+      <div class="skill">
+        <div class="skill-icon">05</div>
+        <h3>Responsibility</h3>
+        <p>
+          Experience handling responsibilities,
+          working with others and supporting a team.
+        </p>
+      </div>
 
 
-            <div class="skill">
+      <div class="skill">
+        <div class="skill-icon">06</div>
+        <h3>Languages</h3>
+        <p>
+          Sinhala · English · Korean
+        </p>
+      </div>
 
-                <div class="skill-number">
-                    04
-                </div>
-
-                <h3>
-                    Communication
-                </h3>
-
-                <p>
-                    English communication and
-                    professional teamwork.
-                </p>
-
-            </div>
-
-
-            <div class="skill">
-
-                <div class="skill-number">
-                    05
-                </div>
-
-                <h3>
-                    Responsibility
-                </h3>
-
-                <p>
-                    Reliable, careful and
-                    responsible when handling tasks.
-                </p>
-
-            </div>
-
-
-            <div class="skill">
-
-                <div class="skill-number">
-                    06
-                </div>
-
-                <h3>
-                    Languages
-                </h3>
-
-                <p>
-                    Sinhala · English · Korean
-                </p>
-
-            </div>
-
-
-        </div>
 
     </div>
 
-</div>
+  </div>
 
 </section>
 
 
-<!-- =========================
-     EXPERIENCE
-========================= -->
+<!-- ================= EXPERIENCE ================= -->
 
-<section id="experience">
+<section id="experience" class="experience">
 
-<div class="container">
+  <div class="container">
 
-    <div class="section-top">
+    <div class="experience-content">
 
-        <div>
+      <div>
 
-            <div class="section-label">
-                05 — Experience
-            </div>
+        <div class="small-title">Experience</div>
 
-            <h2 class="section-title">
-                Learning beyond the classroom
-            </h2>
-
-        </div>
-
-        <div class="section-number">
-            05 / 08
-        </div>
-
-    </div>
-
-
-    <div class="experience">
-
-
-        <img
-            class="experience-image"
-            src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=1000&q=85"
-            alt="Cashier working">
-
-
-        <div class="experience-text">
-
-            <h2>
-                Chief Cashier<br>
-                <span>Experience</span>
-            </h2>
-
-            <p>
-
-                My previous experience as a chief cashier
-                helped me develop practical responsibility,
-                cooperation and communication skills.
-
-                It also taught me the importance of
-                supporting other team members and handling
-                tasks carefully.
-
-            </p>
-
-
-            <div class="experience-points">
-
-                <div class="experience-point">
-                    <span>01</span>
-                    Responsibility
-                </div>
-
-                <div class="experience-point">
-                    <span>02</span>
-                    Team Cooperation
-                </div>
-
-                <div class="experience-point">
-                    <span>03</span>
-                    Communication
-                </div>
-
-                <div class="experience-point">
-                    <span>04</span>
-                    Problem Solving
-                </div>
-
-                <div class="experience-point">
-                    <span>05</span>
-                    Supporting the Team
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</div>
-
-</section>
-
-
-<!-- =========================
-     FAMILY BUSINESS
-========================= -->
-
-<section>
-
-<div class="container">
-
-    <div class="section-top">
-
-        <div>
-
-            <div class="section-label">
-                06 — Family Business
-            </div>
-
-            <h2 class="section-title">
-                Where my interest began
-            </h2>
-
-        </div>
-
-        <div class="section-number">
-            06 / 08
-        </div>
-
-    </div>
-
-
-    <div class="family">
-
-
-        <img
-            class="family-image"
-            src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=1000&q=85"
-            alt="Tailoring and fashion">
-
-
-        <div>
-
-            <h2 class="family-title">
-
-                Sandu<br>
-                <span>Tailors</span>
-
-            </h2>
-
-
-            <p class="family-description">
-
-                My father runs a business in Sri Lanka.
-                Being connected to a family business has influenced
-                my interest in entrepreneurship and business improvement.
-
-                I am interested in exploring how traditional businesses
-                can develop through modern branding, customer experience,
-                organisation and digital opportunities.
-
-            </p>
-
-
-            <div class="family-tags">
-
-                <span class="tag">
-                    Branding
-                </span>
-
-                <span class="tag">
-                    Fashion
-                </span>
-
-                <span class="tag">
-                    Entrepreneurship
-                </span>
-
-                <span class="tag">
-                    Customer Experience
-                </span>
-
-                <span class="tag">
-                    Business Strategy
-                </span>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</div>
-
-</section>
-
-
-<!-- =========================
-     INTERESTS
-========================= -->
-
-<section id="interests">
-
-<div class="container">
-
-    <div class="section-top">
-
-        <div>
-
-            <div class="section-label">
-                07 — Interests
-            </div>
-
-            <h2 class="section-title">
-                Areas I'm exploring
-            </h2>
-
-        </div>
-
-        <div class="section-number">
-            07 / 08
-        </div>
-
-    </div>
-
-
-    <div class="interests">
-
-
-        <div class="interest">
-
-            <img
-                class="interest-image"
-                src="https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=800&q=85"
-                alt="Business">
-
-            <div class="interest-number">
-                01
-            </div>
-
-            <h3>
-                Business Analysis
-            </h3>
-
-            <p>
-                Understanding problems and
-                finding practical solutions.
-            </p>
-
-        </div>
-
-
-        <div class="interest">
-
-            <img
-                class="interest-image"
-                src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=85"
-                alt="Financial analysis">
-
-            <div class="interest-number">
-                02
-            </div>
-
-            <h3>
-                Finance
-            </h3>
-
-            <p>
-                Exploring financial information,
-                performance and decision-making.
-            </p>
-
-        </div>
-
-
-        <div class="interest">
-
-            <img
-                class="interest-image"
-                src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=800&q=85"
-                alt="Entrepreneurship">
-
-            <div class="interest-number">
-                03
-            </div>
-
-            <h3>
-                Entrepreneurship
-            </h3>
-
-            <p>
-                Learning how ideas can become
-                sustainable businesses.
-            </p>
-
-        </div>
-
-
-        <div class="interest">
-
-            <img
-                class="interest-image"
-                src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=800&q=85"
-                alt="Fashion">
-
-            <div class="interest-number">
-                04
-            </div>
-
-            <h3>
-                Fashion Business
-            </h3>
-
-            <p>
-                Combining fashion, business,
-                branding and entrepreneurship.
-            </p>
-
-        </div>
-
-
-    </div>
-
-</div>
-
-</section>
-
-
-<!-- =========================
-     FUTURE
-========================= -->
-
-<section>
-
-<div class="container">
-
-    <div class="future-section" id="future">
-
-        <div class="section-label">
-            08 — Future
-        </div>
-
-
-        <h2 class="future-title">
-
-            Learning today.<br>
-
-            <span>Building tomorrow.</span>
-
+        <h2>
+          Learning Through<br>
+          Responsibility
         </h2>
 
+      </div>
 
-        <p class="future-description">
 
-            My future career direction is still developing.
-            I am currently exploring business analysis,
-            financial analysis, entrepreneurship and
-            international business.
+      <div>
 
-            I hope to gain international academic and
-            professional experience and continue building
-            my career beyond Korea.
-
+        <p class="experience-text">
+          My previous experience as a Chief Cashier helped me develop
+          responsibility, cooperation, attention to detail and
+          customer-focused thinking.
         </p>
 
 
-        <div class="future-grid">
+        <ul class="experience-list">
 
+          <li>Cash handling and transaction responsibility</li>
 
-            <div class="future-item">
+          <li>Customer service and communication</li>
 
-                <small>
-                    01
-                </small>
+          <li>Team cooperation</li>
 
-                <h3>
-                    Strengthen Business Knowledge
-                </h3>
+          <li>Working accurately under responsibility</li>
 
-            </div>
+          <li>Supporting daily business operations</li>
 
+        </ul>
 
-            <div class="future-item">
-
-                <small>
-                    02
-                </small>
-
-                <h3>
-                    Develop Analytical Skills
-                </h3>
-
-            </div>
-
-
-            <div class="future-item">
-
-                <small>
-                    03
-                </small>
-
-                <h3>
-                    Improve English & Korean
-                </h3>
-
-            </div>
-
-
-            <div class="future-item">
-
-                <small>
-                    04
-                </small>
-
-                <h3>
-                    Gain Practical Experience
-                </h3>
-
-            </div>
-
-
-            <div class="future-item">
-
-                <small>
-                    05
-                </small>
-
-                <h3>
-                    Explore International Opportunities
-                </h3>
-
-            </div>
-
-
-            <div class="future-item">
-
-                <small>
-                    06
-                </small>
-
-                <h3>
-                    Build My Professional Portfolio
-                </h3>
-
-            </div>
-
-
-        </div>
+      </div>
 
     </div>
 
-</div>
+  </div>
 
 </section>
 
 
-<!-- =========================
-     CONTACT
-========================= -->
+<!-- ================= FAMILY BUSINESS ================= -->
 
-<section id="contact">
+<section>
 
-<div class="container">
+  <div class="container about-grid">
+
+    <div>
+
+      <div class="small-title">
+        Family Business ✦
+      </div>
+
+      <h2>
+        Understanding Business<br>
+        From the Inside
+      </h2>
+
+    </div>
+
+
+    <div class="about-text">
+
+      <p>
+        Being connected to a family-owned business has given me
+        an early understanding of customers, responsibility,
+        quality and day-to-day business operations.
+      </p>
+
+      <p>
+        This background has strengthened my interest in
+        entrepreneurship, business development, customer experience
+        and fashion-related business opportunities.
+      </p>
+
+      <div class="signature">
+        Entrepreneurship · Business · Fashion
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- ================= INTERESTS ================= -->
+
+<section>
+
+  <div class="container">
 
     <div class="section-top">
 
-        <div>
-
-            <div class="section-label">
-                Contact
-            </div>
-
-            <h2 class="section-title">
-                Let's connect
-            </h2>
-
-        </div>
-
-        <div class="section-number">
-            2026
-        </div>
+      <div>
+        <div class="small-title">Interests</div>
+        <h2>Areas I Explore</h2>
+      </div>
 
     </div>
 
 
-    <div class="contact-grid">
+    <div class="interest-grid">
 
+      <div class="interest">
+        <h3>Business<br>Analysis</h3>
+      </div>
 
-        <div>
+      <div class="interest">
+        <h3>Finance</h3>
+      </div>
 
-            <h2 class="contact-name">
+      <div class="interest">
+        <h3>Entrepreneurship</h3>
+      </div>
 
-                Sakuni<br>
-
-                <span>Thelambuge</span>
-
-            </h2>
-
-        </div>
-
-
-        <div class="contact-details">
-
-
-            <div class="contact-detail">
-
-                <small>
-                    University
-                </small>
-
-                <p>
-                    Dong-A University
-                </p>
-
-            </div>
-
-
-            <div class="contact-detail">
-
-                <small>
-                    Major
-                </small>
-
-                <p>
-                    Integrated Business Management
-                </p>
-
-            </div>
-
-
-            <div class="contact-detail">
-
-                <small>
-                    Location
-                </small>
-
-                <p>
-                    Busan, South Korea
-                </p>
-
-            </div>
-
-
-            <div class="contact-detail">
-
-                <small>
-                    GitHub
-                </small>
-
-                <p>
-                   thelambugec-ship-it
-                </p>
-
-            </div>
-
-
-            <div class="contact-detail">
-
-                <small>
-                    Email
-                </small>
-
-                <p>
-                    thelambugec@gmail.com
-                </p>
-
-            </div>
-
-
-        </div>
+      <div class="interest">
+        <h3>Fashion<br>Business</h3>
+      </div>
 
     </div>
 
-</div>
+  </div>
 
 </section>
 
 
-<!-- =========================
-     FOOTER
-========================= -->
+<!-- ================= FUTURE ================= -->
+
+<section id="future" class="future">
+
+  <div class="container future-grid">
+
+    <div>
+
+      <div class="small-title">
+        Looking Ahead ✦
+      </div>
+
+      <h2>
+        Where I'm<br>
+        Going
+      </h2>
+
+    </div>
+
+
+    <div>
+
+      <p class="future-text">
+        My current goal is to continue developing myself as a
+        business student and prepare for international academic
+        and professional opportunities.
+      </p>
+
+
+      <ul class="goals">
+
+        <li>
+          Strengthen business and analytical knowledge
+        </li>
+
+        <li>
+          Develop professional English and Korean communication
+        </li>
+
+        <li>
+          Gain practical business experience
+        </li>
+
+        <li>
+          Explore international study opportunities
+        </li>
+
+        <li>
+          Build a strong professional portfolio
+        </li>
+
+        <li>
+          Develop entrepreneurial thinking
+        </li>
+
+      </ul>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- ================= CONTACT ================= -->
+
+<section id="contact" class="contact">
+
+  <div class="container">
+
+    <div class="small-title">
+      Get In Touch
+    </div>
+
+    <h2>
+      Let's Connect.
+    </h2>
+
+    <p>
+      I am always interested in learning, connecting with people
+      and exploring new academic and professional opportunities.
+    </p>
+
+    <a href="mailto:YOUR-EMAIL@example.com" class="button">
+      Contact Me →
+    </a>
+
+
+    <div class="contact-links">
+
+      <a href="https://github.com/YOUR-USERNAME" target="_blank">
+        GITHUB
+      </a>
+
+      <a href="mailto:YOUR-EMAIL@example.com">
+        EMAIL
+      </a>
+
+      <span>
+        BUSAN · SOUTH KOREA
+      </span>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- ================= FOOTER ================= -->
 
 <footer>
 
-<div class="container footer">
+  <div>
+    SAKUNI CHETHANA
+  </div>
 
-    <span>
-        © 2026 Sakuni Thelambuge
-    </span>
-
-    <span>
-        Student Portfolio · Dong-A University
-    </span>
-
-</div>
+  <div>
+    STUDENT PORTFOLIO · 2026
+  </div>
 
 </footer>
 
