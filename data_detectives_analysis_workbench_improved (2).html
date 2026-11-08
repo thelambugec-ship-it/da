@@ -1,0 +1,847 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="A reusable, browser-based CSV analysis workbench for the Data Detectives project.">
+<title>Data Detectives | Analysis Workbench</title>
+<style>
+:root{--navy:#14243a;--blue:#245b8f;--teal:#16877c;--bg:#f3f6fa;--card:#fff;--ink:#1c2938;--muted:#64748b;--line:#dce4ed;--gold:#c18a2c;--red:#b94b4b;--green:#18745f}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.5 Inter,system-ui,-apple-system,Segoe UI,Arial,sans-serif}
+header{background:linear-gradient(115deg,#14243a,#245b8f);color:#fff;padding:24px clamp(16px,4vw,48px)}header .eyebrow{letter-spacing:.14em;text-transform:uppercase;font-size:11px;opacity:.85}h1{margin:5px 0;font-size:clamp(24px,4vw,34px)}header p{margin:4px 0 0;color:#dbe8f5}
+main{max-width:1500px;margin:auto;padding:22px clamp(12px,3vw,36px) 60px}.notice{padding:12px 15px;border:1px solid #cbd9e8;background:#edf5fc;border-radius:10px;color:#294b6b;margin-bottom:14px}.notice.warn{background:#fff8e9;border-color:#ead7a9;color:#76521b}.notice.error{background:#fff0f0;border-color:#eccaca;color:#8c3434}
+.toolbar,.tabs,.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}.toolbar{margin:14px 0}button,.button{border:0;border-radius:8px;padding:9px 13px;background:var(--blue);color:#fff;font-weight:600;cursor:pointer}button:hover{filter:brightness(.96)}button.secondary{background:#e8eef5;color:#29445e;border:1px solid var(--line)}button.danger{background:#a83f45}button:disabled{opacity:.45;cursor:not-allowed}button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid #8bbce5;outline-offset:1px}
+.tabs{border-bottom:1px solid var(--line);margin:18px 0}.tab{background:transparent;color:var(--muted);border-radius:8px 8px 0 0;padding:11px 14px}.tab.active{color:var(--blue);border-bottom:3px solid var(--teal);background:#fff}.panel{display:none}.panel.active{display:block}.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:17px;margin:12px 0;box-shadow:0 2px 8px #18324b08}
+h2{font-size:19px;margin:0 0 12px}h3{font-size:15px;margin:0 0 10px}.muted,small{color:var(--muted)}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(165px,1fr));gap:12px}.metric{background:#f7f9fc;border:1px solid var(--line);border-radius:10px;padding:13px;min-width:0}.metric strong{display:block;font-size:23px;color:var(--navy);overflow-wrap:anywhere}.metric span{font-size:12px;color:var(--muted)}
+label{font-weight:600;font-size:12px;color:#40546a;display:block;margin-bottom:5px}input,select,textarea{font:inherit;padding:9px 10px;border:1px solid #cbd5e1;border-radius:8px;background:#fff;color:var(--ink);max-width:100%}input[type=file]{padding:8px;width:min(100%,460px)}input[type=checkbox]{width:auto}.field{display:flex;flex-direction:column;gap:3px;min-width:150px;flex:1}.status{font-size:12px;color:var(--muted);margin-left:auto}.success{color:var(--green)}.errorText{color:var(--red)}.warnText{color:#9a6412}
+.table-wrap{overflow:auto;border:1px solid var(--line);border-radius:9px;max-height:560px}table{border-collapse:collapse;width:100%;font-size:12px}th,td{padding:9px 10px;border-bottom:1px solid #e8edf3;text-align:left;vertical-align:top;min-width:90px;max-width:460px;white-space:normal;overflow-wrap:anywhere}th{background:#edf2f7;color:#31465c;position:sticky;top:0;z-index:1}tr:hover td{background:#f8fbfe}.empty{padding:25px;text-align:center;color:var(--muted)}.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:14px}canvas{width:100%;height:320px;display:block;border:1px solid #edf1f5;border-radius:8px;background:#fff}.inline-check{display:flex;align-items:center;gap:8px;font-weight:500}.inline-check input{margin:0}.small-note{font-size:12px;color:var(--muted)}.pill{display:inline-block;border-radius:20px;padding:2px 8px;background:#e9f2f7;color:#285675;font-size:11px}
+@media(max-width:650px){header{padding:18px 15px}.tab{padding:9px 8px;font-size:12px}.card{padding:13px}.table-wrap{max-height:430px}.status{width:100%;margin-left:0}}
+</style>
+</head>
+<body>
+<header>
+  <div class="eyebrow">Terra Galactic Force · Data Detectives</div>
+  <h1>Analysis Workbench</h1>
+  <p>Reusable CSV exploration, data quality, statistics, charts and export</p>
+</header>
+<main>
+  <div class="notice"><b>Data protection:</b> Files are processed locally in this browser. Each uploaded file has a separate original copy and working copy. The original upload is not overwritten. Download backups before closing the page because edits are kept in this browser tab only.</div>
+  <div id="appMessage" class="notice" role="status" aria-live="polite" hidden></div>
+  <section class="card" aria-labelledby="loadTitle">
+    <h2 id="loadTitle">Load datasets</h2>
+    <div class="toolbar">
+      <div class="field"><label for="fileInput">Choose one or more CSV files</label><input id="fileInput" type="file" accept=".csv,text/csv" multiple></div>
+      <button id="demoButton" class="secondary" type="button">Load synthetic demo</button>
+      <div class="field"><label for="datasetPicker">Active dataset</label><select id="datasetPicker" disabled><option value="">No dataset loaded</option></select></div>
+      <span id="fileStatus" class="status">No dataset loaded</span>
+    </div>
+    <p class="muted">Supports quoted fields, commas inside quotes, escaped quotes, line breaks inside quoted fields, UTF-8 BOM and common line endings. The synthetic demo contains invented data and is not assignment evidence.</p>
+  </section>
+  <nav class="tabs" aria-label="Analysis requirements">
+    <button class="tab active" type="button" data-tab="overview" aria-selected="true">T1 · Overview</button>
+    <button class="tab" type="button" data-tab="explorer" aria-selected="false">T2 · Explorer</button>
+    <button class="tab" type="button" data-tab="quality" aria-selected="false">T3 · Quality</button>
+    <button class="tab" type="button" data-tab="stats" aria-selected="false">T4 · Statistics</button>
+    <button class="tab" type="button" data-tab="charts" aria-selected="false">T5 · Charts & outliers</button>
+    <button class="tab" type="button" data-tab="export" aria-selected="false">T6 · Export</button>
+  </nav>
+
+  <section id="overview" class="panel active">
+    <div class="card"><h2>Dataset overview</h2><div id="overviewMetrics" class="grid"><div class="empty">Upload a CSV to begin.</div></div></div>
+    <div class="card"><h3>Column type suggestions</h3><p class="small-note">Types are suggestions based on the values detected. Check them against what each field means before analysis.</p><div id="types" class="table-wrap"><div class="empty">No columns yet.</div></div></div>
+    <div class="card"><div class="row"><h3>Record preview</h3><span id="previewCount" class="status"></span></div><div id="preview" class="table-wrap"><div class="empty">Upload a CSV to view records.</div></div></div>
+  </section>
+
+  <section id="explorer" class="panel">
+    <div class="card"><h2>Search, sort and filter</h2>
+      <div class="toolbar">
+        <div class="field"><label for="searchInput">Search all fields</label><input id="searchInput" type="search" placeholder="Search records…"></div>
+        <div class="field"><label for="filterColumn">Filter column</label><select id="filterColumn"><option value="">Choose column</option></select></div>
+        <div class="field"><label for="filterMode">Filter rule</label><select id="filterMode"><option value="contains">Contains</option><option value="exact">Exact match</option><option value="empty">Is empty</option><option value="notempty">Is not empty</option></select></div>
+        <div class="field"><label for="filterValue">Filter value</label><input id="filterValue" placeholder="Enter a value"></div>
+        <div class="field"><label for="sortColumn">Sort by</label><select id="sortColumn"><option value="">No sorting</option></select></div>
+        <div class="field"><label for="sortDirection">Direction</label><select id="sortDirection"><option value="asc">Ascending</option><option value="desc">Descending</option></select></div>
+        <div class="field"><label for="rowLimit">Rows to display</label><select id="rowLimit"><option value="250">250</option><option value="1000" selected>1,000</option><option value="5000">5,000</option><option value="all">All matching rows</option></select></div>
+        <button id="clearExplorer" class="secondary" type="button">Clear filters</button>
+      </div>
+      <p id="explorerCount" class="muted" aria-live="polite">Load a dataset to explore records.</p>
+      <div id="explorerTable" class="table-wrap"><div class="empty">No dataset loaded.</div></div>
+    </div>
+  </section>
+
+  <section id="quality" class="panel">
+    <div class="card"><h2>Data quality scan</h2><p class="muted">The scan flags possible issues for review. It cannot know every assignment-specific rule and does not decide what the correct value should be.</p>
+      <div class="toolbar"><div class="field"><label for="idColumn">ID column for repeated-ID check (optional)</label><select id="idColumn"><option value="">Auto-detect ID-like columns</option></select></div><button id="runScan" type="button">Run quality scan</button></div>
+      <div id="qualitySummary" class="grid"></div><div id="issues" class="two" style="margin-top:14px"><div class="empty">Run the scan to inspect potential issues.</div></div>
+    </div>
+    <div class="card"><h3>Propose a manual cell edit</h3><p class="small-note">Record number means the data row number shown in this tool (header row is not counted). Preview an edit before applying it.</p>
+      <div class="toolbar"><div class="field"><label for="editRow">Data row number</label><input id="editRow" type="number" min="1" step="1" placeholder="e.g. 1"></div><div class="field"><label for="editColumn">Column</label><select id="editColumn"><option value="">Choose column</option></select></div><div class="field"><label for="editValue">New value</label><input id="editValue"></div><div class="field"><label for="editReason">Reason / evidence</label><input id="editReason" placeholder="Why is this change justified?"></div><button id="previewEdit" type="button">Preview edit</button></div>
+      <div id="editPreview" aria-live="polite"></div>
+    </div>
+    <div class="card"><h3>Optional whitespace correction</h3><p class="muted">Preview removes leading and trailing spaces from non-empty cells. It does not change spaces inside the text.</p><button id="previewTrim" class="secondary" type="button">Preview trim changes</button><div id="trimResults" style="margin-top:12px"></div></div>
+  </section>
+
+  <section id="stats" class="panel">
+    <div class="card"><h2>Descriptive statistics</h2><div class="toolbar"><div class="field"><label for="statColumn">Numeric column</label><select id="statColumn"><option value="">Choose numeric column</option></select></div><button id="calculateStats" type="button">Calculate</button></div>
+      <div id="statResults" class="grid"><div class="empty">Choose a numeric column.</div></div><p id="statNote" class="muted"></p>
+    </div>
+  </section>
+
+  <section id="charts" class="panel">
+    <div class="card"><h2>Visual analysis and outliers</h2><div class="toolbar"><div class="field"><label for="chartColumn">Numeric column</label><select id="chartColumn"><option value="">Choose numeric column</option></select></div><button id="drawChart" type="button">Draw chart and calculate outliers</button></div>
+      <canvas id="chartCanvas" width="1100" height="340" aria-label="Chart of numeric values by record order"></canvas>
+      <div id="outlierResults" style="margin-top:14px"><div class="empty">Choose a numeric column to begin.</div></div>
+    </div>
+  </section>
+
+  <section id="export" class="panel">
+    <div class="card"><h2>Export cleaned data</h2><p class="muted">Exports the current working copy, not the untouched original. Exact duplicate rows are excluded by default from the exported CSV. You can untick the option only if you intentionally want to keep them. Repeated IDs with different values are not automatically removed.</p>
+      <label class="inline-check"><input id="removeExactDuplicates" type="checkbox" checked> Remove exact duplicate rows from the exported CSV</label>
+      <div class="toolbar"><button id="exportCsv" type="button">Download cleaned CSV</button><button id="exportChangeLog" class="secondary" type="button">Download change log</button><button id="restoreOriginal" class="danger" type="button">Restore working copy from original</button></div>
+      <p id="exportPreview" class="notice" aria-live="polite">Load a dataset to preview the export.</p><p id="logSummary" class="muted">No changes recorded.</p>
+    </div>
+    <div class="card"><h3>Change log</h3><p class="small-note">Applied edits are logged. When exact duplicates are excluded during export, those export-only removals are also included in the downloaded change log.</p><div id="logTable" class="table-wrap"><div class="empty">No changes yet.</div></div></div>
+  </section>
+  <footer class="small-note">Standalone HTML · No external libraries · Runs locally in your browser</footer>
+</main>
+
+<script>
+'use strict';
+
+const $ = id => document.getElementById(id);
+let datasets = [];
+let activeDataset = null;
+let pendingEdit = null;
+let pendingTrim = null;
+
+function escapeHTML(value) {
+  return String(value ?? '').replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
+}
+
+function showMessage(message, kind = 'info') {
+  const box = $('appMessage');
+  box.textContent = message;
+  box.hidden = !message;
+  box.className = 'notice' + (kind === 'warning' ? ' warn' : kind === 'error' ? ' error' : '');
+}
+
+function uniqueHeaders(rawHeaders, issues) {
+  const used = new Map();
+  return rawHeaders.map((raw, index) => {
+    const base = String(raw ?? '').trim() || `Column_${index + 1}`;
+    const count = (used.get(base) || 0) + 1;
+    used.set(base, count);
+    if (count > 1) issues.push(`Duplicate header "${base}" renamed to "${base} (${count})" so no column is overwritten.`);
+    if (!String(raw ?? '').trim()) issues.push(`Blank header at column ${index + 1} renamed to "${base}".`);
+    return count === 1 ? base : `${base} (${count})`;
+  });
+}
+
+function parseCSV(inputText) {
+  const text = String(inputText ?? '').replace(/^\uFEFF/, '');
+  const rows = [];
+  let row = [];
+  let field = '';
+  let inQuotes = false;
+  let afterQuote = false;
+  let line = 1;
+  let rowStartLine = 1;
+
+  function pushField() { row.push(field); field = ''; afterQuote = false; }
+  function pushRow() {
+    pushField();
+    if (row.some(value => value !== '')) rows.push({ values: row, line: rowStartLine });
+    row = [];
+    rowStartLine = line + 1;
+  }
+
+  for (let i = 0; i < text.length; i++) {
+    const ch = text[i];
+    if (inQuotes) {
+      if (ch === '"' && text[i + 1] === '"') { field += '"'; i++; }
+      else if (ch === '"') { inQuotes = false; afterQuote = true; }
+      else { field += ch; if (ch === '\n') line++; }
+      continue;
+    }
+    if (afterQuote) {
+      if (ch === ',') { pushField(); continue; }
+      if (ch === '\r' || ch === '\n') {
+        if (ch === '\r' && text[i + 1] === '\n') i++;
+        pushRow(); line++; continue;
+      }
+      if (ch === ' ' || ch === '\t') { field += ch; continue; }
+      throw new Error(`Unexpected character after a quoted field near line ${line}.`);
+    }
+    if (ch === '"') {
+      if (field !== '') throw new Error(`Unexpected quote inside an unquoted field near line ${line}.`);
+      inQuotes = true; continue;
+    }
+    if (ch === ',') { pushField(); continue; }
+    if (ch === '\r' || ch === '\n') {
+      if (ch === '\r' && text[i + 1] === '\n') i++;
+      pushRow(); line++; continue;
+    }
+    field += ch;
+  }
+  if (inQuotes) throw new Error(`CSV has an unclosed quoted field near line ${line}.`);
+  if (field !== '' || row.length > 0 || afterQuote) {
+    pushField();
+    if (row.some(value => value !== '')) rows.push({ values: row, line: rowStartLine });
+  }
+  if (!rows.length) throw new Error('The CSV is empty or contains no non-empty rows.');
+
+  const issues = [];
+  const headers = uniqueHeaders(rows.shift().values, issues);
+  const maxWidth = Math.max(headers.length, ...rows.map(item => item.values.length));
+  let extraIndex = 1;
+  let extraColumnsAdded = false;
+  while (headers.length < maxWidth) {
+    let extraName = `Extra_Column_${extraIndex++}`;
+    while (headers.includes(extraName)) extraName = `Extra_Column_${extraIndex++}`;
+    headers.push(extraName);
+    extraColumnsAdded = true;
+  }
+  if (extraColumnsAdded) issues.push('One or more data rows contain more fields than the header. Extra fields were retained in additional columns.');
+  const records = rows.map((item, index) => {
+    if (item.values.length !== headers.length) {
+      issues.push(`Data row ${index + 1} (file line ${item.line}) has ${item.values.length} fields; expected ${headers.length}. Missing cells were left blank or extra fields retained.`);
+    }
+    const record = {};
+    headers.forEach((header, colIndex) => { record[header] = item.values[colIndex] ?? ''; });
+    return record;
+  });
+  return { headers, records, issues };
+}
+
+function parseNumeric(raw) {
+  let value = String(raw ?? '').trim();
+  if (!value) return null;
+  value = value.replace(/[−–]/g, '-');
+  let negativeByParentheses = false;
+  const parentheses = value.match(/^\((.*)\)$/);
+  if (parentheses) { negativeByParentheses = true; value = parentheses[1].trim(); }
+  value = value.replace(/^[\$€£¥₩]\s*/, '').replace(/\s*[\$€£¥₩]$/, '').trim();
+  if (value.endsWith('%')) value = value.slice(0, -1).trim();
+  const hasComma = value.includes(',');
+  const grouped = /^[+-]?\d{1,3}(,\d{3})+(\.\d+)?([eE][+-]?\d+)?$/.test(value);
+  if (hasComma && !grouped) return null;
+  if (grouped) value = value.replace(/,/g, '');
+  if (!/^[+-]?(?:\d+\.?\d*|\.\d+)(?:[eE][+-]?\d+)?$/.test(value)) return null;
+  const number = Number(value) * (negativeByParentheses ? -1 : 1);
+  return Number.isFinite(number) ? number : null;
+}
+
+function isValidISODate(value) {
+  const match = String(value ?? '').trim().match(/^(\d{4})-(\d{2})-(\d{2})$/);
+  if (!match) return false;
+  const year = Number(match[1]), month = Number(match[2]), day = Number(match[3]);
+  const date = new Date(Date.UTC(year, month - 1, day));
+  return date.getUTCFullYear() === year && date.getUTCMonth() === month - 1 && date.getUTCDate() === day;
+}
+
+function isIdColumn(name) {
+  return /(^id$|(?:^|[_\s-])id(?:$|[_\s-])|ID$|Id$)/.test(String(name ?? ''));
+}
+
+function typeSuggestion(values) {
+  const nonEmpty = values.map(value => String(value ?? '').trim()).filter(Boolean);
+  if (!nonEmpty.length) return 'Unknown (all values empty)';
+  const numericCount = nonEmpty.filter(value => parseNumeric(value) !== null).length;
+  const dateCount = nonEmpty.filter(isValidISODate).length;
+  const booleanCount = nonEmpty.filter(value => /^(true|false)$/i.test(value)).length;
+  if (dateCount / nonEmpty.length >= 0.9) return 'Date (YYYY-MM-DD)';
+  if (numericCount / nonEmpty.length >= 0.9) return 'Number';
+  if (booleanCount === nonEmpty.length) return 'Boolean';
+  if (numericCount || dateCount || booleanCount) return 'Mixed / review';
+  return 'Text';
+}
+
+function csvEscape(value) {
+  const text = String(value ?? '');
+  return /[",\r\n]/.test(text) ? '"' + text.replace(/"/g, '""') + '"' : text;
+}
+
+function downloadFile(filename, content) {
+  const blob = new Blob(['\uFEFF', content], { type: 'text/csv;charset=utf-8' });
+  const url = URL.createObjectURL(blob);
+  const anchor = document.createElement('a');
+  anchor.href = url;
+  anchor.download = filename;
+  document.body.appendChild(anchor);
+  anchor.click();
+  anchor.remove();
+  window.setTimeout(() => URL.revokeObjectURL(url), 1500);
+}
+
+function safeBaseName(name) {
+  return String(name || 'dataset').replace(/\.csv$/i, '').replace(/[^a-z0-9._-]+/gi, '_').replace(/^_+|_+$/g, '') || 'dataset';
+}
+
+function renderTable(rows, columns, limit = 100) {
+  if (!rows.length) return '<div class="empty">No matching records.</div>';
+  const visible = rows.slice(0, limit);
+  const head = `<thead><tr>${columns.map(column => `<th>${escapeHTML(column)}</th>`).join('')}</tr></thead>`;
+  const body = `<tbody>${visible.map(record => `<tr>${columns.map(column => `<td>${escapeHTML(record[column])}</td>`).join('')}</tr>`).join('')}</tbody>`;
+  return `<table>${head}${body}</table>`;
+}
+
+function getNumericEntries(column, records = activeDataset?.working ?? []) {
+  if (!column) return [];
+  return records.map((record, index) => ({ row: index + 1, raw: record[column], value: parseNumeric(record[column]) }))
+    .filter(entry => entry.value !== null);
+}
+
+function numericColumns() {
+  if (!activeDataset) return [];
+  return activeDataset.headers.filter(column => getNumericEntries(column).length > 0);
+}
+
+function updateSelect(id, options, placeholder = 'Choose column', preferred = undefined) {
+  const select = $(id);
+  const oldValue = preferred !== undefined ? preferred : select.value;
+  select.innerHTML = `<option value="">${escapeHTML(placeholder)}</option>` + options.map(option => `<option value="${escapeHTML(option)}">${escapeHTML(option)}</option>`).join('');
+  if (options.includes(oldValue)) select.value = oldValue;
+}
+
+function updateDatasetPicker() {
+  const select = $('datasetPicker');
+  select.innerHTML = datasets.map((dataset, index) => `<option value="${index}">${escapeHTML(dataset.name)}</option>`).join('') || '<option value="">No dataset loaded</option>';
+  select.disabled = datasets.length === 0;
+  if (activeDataset) select.value = String(datasets.indexOf(activeDataset));
+}
+
+function clearDerivedDisplays() {
+  $('qualitySummary').innerHTML = '';
+  $('issues').innerHTML = '<div class="empty">Run the scan to inspect potential issues.</div>';
+  $('editPreview').innerHTML = '';
+  $('trimResults').innerHTML = '';
+  $('statResults').innerHTML = '<div class="empty">Choose a numeric column.</div>';
+  $('statNote').textContent = '';
+  $('outlierResults').innerHTML = '<div class="empty">Choose a numeric column to begin.</div>';
+  const context = $('chartCanvas').getContext('2d');
+  if (context) context.clearRect(0, 0, $('chartCanvas').width, $('chartCanvas').height);
+  pendingEdit = null;
+  pendingTrim = null;
+}
+
+function refresh() {
+  clearDerivedDisplays();
+  updateDatasetPicker();
+  if (!activeDataset) {
+    $('fileStatus').textContent = 'No dataset loaded';
+    $('overviewMetrics').innerHTML = '<div class="empty">Upload a CSV to begin.</div>';
+    $('types').innerHTML = '<div class="empty">No columns yet.</div>';
+    $('preview').innerHTML = '<div class="empty">Upload a CSV to view records.</div>';
+    $('previewCount').textContent = '';
+    $('explorerCount').textContent = 'Load a dataset to explore records.';
+    $('explorerTable').innerHTML = '<div class="empty">No dataset loaded.</div>';
+    ['filterColumn','sortColumn','editColumn','statColumn','chartColumn','idColumn'].forEach(id => updateSelect(id, [], 'Choose column'));
+    clearDerivedDisplays();
+    renderLog();
+    return;
+  }
+  const ds = activeDataset;
+  $('fileStatus').textContent = `${ds.name} · ${ds.working.length.toLocaleString()} records · ${ds.headers.length} columns`;
+  const metrics = [
+    ['Records', ds.working.length], ['Columns', ds.headers.length],
+    ['Original records', ds.original.length], ['Applied changes', ds.changeLog.length]
+  ];
+  $('overviewMetrics').innerHTML = metrics.map(([label, value]) => `<div class="metric"><strong>${Number(value).toLocaleString()}</strong><span>${label}</span></div>`).join('');
+  const typeRows = ds.headers.map(column => ({ Column: column, 'Suggested type': typeSuggestion(ds.working.map(record => record[column])), 'Non-empty values': ds.working.filter(record => String(record[column] ?? '').trim() !== '').length }));
+  $('types').innerHTML = renderTable(typeRows, ['Column','Suggested type','Non-empty values'], ds.headers.length);
+  $('preview').innerHTML = renderTable(ds.working, ds.headers, 50);
+  $('previewCount').textContent = `Showing ${Math.min(50, ds.working.length)} of ${ds.working.length.toLocaleString()}`;
+  updateSelect('filterColumn', ds.headers, 'Choose column');
+  updateSelect('sortColumn', ds.headers, 'No sorting');
+  updateSelect('editColumn', ds.headers, 'Choose column');
+  updateSelect('statColumn', numericColumns(), 'Choose numeric column');
+  updateSelect('chartColumn', numericColumns(), 'Choose numeric column');
+  const idCandidates = ds.headers.filter(isIdColumn);
+  updateSelect('idColumn', ds.headers, 'Auto-detect ID-like columns');
+  renderExplorer();
+  renderLog();
+}
+
+function addDataset(name, parsed) {
+  const dataset = {
+    name,
+    headers: parsed.headers,
+    original: parsed.records.map(record => ({ ...record })),
+    working: parsed.records.map(record => ({ ...record })),
+    changeLog: [],
+    lastExportDedupeChanges: [],
+    importIssues: parsed.issues
+  };
+  datasets.push(dataset);
+  activeDataset = dataset;
+  $('idColumn').value = '';
+  refresh();
+}
+
+function setActiveDataset(index) {
+  if (!Number.isInteger(index) || index < 0 || index >= datasets.length) return;
+  activeDataset = datasets[index];
+  $('idColumn').value = '';
+  clearDerivedDisplays();
+  refresh();
+  showMessage(`Active dataset changed to ${activeDataset.name}. Each dataset keeps its own working copy and change log.`);
+}
+
+function renderExplorer() {
+  if (!activeDataset) return;
+  const ds = activeDataset;
+  const query = $('searchInput').value.trim().toLocaleLowerCase();
+  const filterColumn = $('filterColumn').value;
+  const filterMode = $('filterMode').value;
+  const filterValue = $('filterValue').value.toLocaleLowerCase();
+  const sortColumn = $('sortColumn').value;
+  const direction = $('sortDirection').value;
+  const limitSetting = $('rowLimit').value;
+
+  let indexed = ds.working.map((record, index) => ({ record, index }));
+  if (query) indexed = indexed.filter(item => ds.headers.some(column => String(item.record[column] ?? '').toLocaleLowerCase().includes(query)));
+  if (filterColumn) {
+    indexed = indexed.filter(item => {
+      const raw = String(item.record[filterColumn] ?? '');
+      const value = raw.toLocaleLowerCase();
+      if (filterMode === 'empty') return raw.trim() === '';
+      if (filterMode === 'notempty') return raw.trim() !== '';
+      if (filterMode === 'exact') return value === filterValue;
+      return value.includes(filterValue);
+    });
+  }
+  if (sortColumn) {
+    indexed.sort((a, b) => {
+      const x = String(a.record[sortColumn] ?? '').trim();
+      const y = String(b.record[sortColumn] ?? '').trim();
+      let comparison = 0;
+      if (x === '' && y !== '') return 1;
+      if (y === '' && x !== '') return -1;
+      if (x === y) return a.index - b.index;
+      else {
+        const nx = parseNumeric(x), ny = parseNumeric(y);
+        comparison = nx !== null && ny !== null ? nx - ny : x.localeCompare(y, undefined, { numeric: true, sensitivity: 'base' });
+      }
+      if (comparison === 0) comparison = a.index - b.index;
+      return direction === 'desc' ? -comparison : comparison;
+    });
+  }
+  const count = indexed.length;
+  const limit = limitSetting === 'all' ? count : Number(limitSetting);
+  const displayRows = indexed.slice(0, limit).map(item => ({ ...item.record }));
+  $('explorerCount').textContent = `${count.toLocaleString()} matching records · displaying ${displayRows.length.toLocaleString()}${displayRows.length < count ? ' (use the row limit to show more)' : ''}`;
+  $('explorerTable').innerHTML = renderTable(displayRows, ds.headers, displayRows.length || 1);
+}
+
+function scanQuality() {
+  if (!activeDataset) { showMessage('Load a CSV before running the quality scan.', 'warning'); return; }
+  const ds = activeDataset;
+  const missing = [];
+  ds.headers.forEach(column => {
+    const count = ds.working.filter(record => String(record[column] ?? '').trim() === '').length;
+    if (count) missing.push({ Column: column, 'Missing cells': count });
+  });
+
+  const firstSeen = new Map();
+  const exactDuplicates = [];
+  ds.working.forEach((record, index) => {
+    const key = JSON.stringify(ds.headers.map(column => record[column] ?? ''));
+    if (firstSeen.has(key)) exactDuplicates.push({ 'First row': firstSeen.get(key), 'Duplicate row': index + 1 });
+    else firstSeen.set(key, index + 1);
+  });
+
+  const selectedId = $('idColumn').value;
+  const idColumns = selectedId ? [selectedId] : ds.headers.filter(isIdColumn);
+  const repeatedIds = [];
+  idColumns.forEach(column => {
+    const groups = new Map();
+    ds.working.forEach((record, index) => {
+      const id = String(record[column] ?? '').trim();
+      if (!id) return;
+      if (!groups.has(id)) groups.set(id, []);
+      groups.get(id).push(index);
+    });
+    for (const [id, indices] of groups) {
+      if (indices.length < 2) continue;
+      const distinctRecords = new Set(indices.map(index => JSON.stringify(ds.headers.map(header => ds.working[index][header] ?? '')))).size;
+      repeatedIds.push({ Column: column, ID: id, Rows: indices.map(index => index + 1).join(', '), 'Occurrences': indices.length, 'Distinct records': distinctRecords, Assessment: distinctRecords > 1 ? 'Potential conflicting ID' : 'Repeated identical record' });
+    }
+  });
+
+  const mixedValues = [];
+  ds.headers.forEach(column => {
+    const values = ds.working.map((record, index) => ({ row: index + 1, raw: String(record[column] ?? '').trim() })).filter(item => item.raw !== '');
+    if (values.length < 2) return;
+    const numericCount = values.filter(item => parseNumeric(item.raw) !== null).length;
+    const dateCount = values.filter(item => isValidISODate(item.raw)).length;
+    const boolCount = values.filter(item => /^(true|false)$/i.test(item.raw)).length;
+    const candidates = [
+      { count: numericCount, expected: 'numeric', matches: value => parseNumeric(value) !== null },
+      { count: dateCount, expected: 'YYYY-MM-DD date', matches: value => isValidISODate(value) },
+      { count: boolCount, expected: 'true/false', matches: value => /^(true|false)$/i.test(value) }
+    ].sort((a, b) => b.count - a.count);
+    const dominant = candidates[0];
+    if (dominant.count < 2 || dominant.count === values.length || dominant.count / values.length < 0.5) return;
+    values.forEach(item => {
+      if (!dominant.matches(item.raw)) mixedValues.push({ 'Data row': item.row, Column: column, Value: item.raw, 'Possible issue': `Does not match the most common detected type (${dominant.expected})` });
+    });
+  });
+
+  const importIssues = ds.importIssues.map((issue, index) => ({ Issue: index + 1, Details: issue }));
+  const summary = [
+    ['Columns with missing values', missing.length], ['Exact duplicate rows', exactDuplicates.length],
+    ['Repeated ID groups', repeatedIds.length], ['Possible mixed-type cells', mixedValues.length], ['CSV structure warnings', importIssues.length]
+  ];
+  $('qualitySummary').innerHTML = summary.map(([label, value]) => `<div class="metric"><strong>${Number(value).toLocaleString()}</strong><span>${escapeHTML(label)}</span></div>`).join('');
+  $('issues').innerHTML = [
+    `<div><h3>Missing values</h3>${renderTable(missing, ['Column','Missing cells'], 1000)}</div>`,
+    `<div><h3>Exact duplicate rows</h3>${renderTable(exactDuplicates, ['First row','Duplicate row'], 1000)}</div>`,
+    `<div><h3>Repeated IDs / possible conflicts</h3>${repeatedIds.length ? renderTable(repeatedIds, ['Column','ID','Rows','Occurrences','Distinct records','Assessment'], 1000) : '<div class="empty">No repeated IDs found in the selected or auto-detected ID columns.</div>'}</div>`,
+    `<div><h3>Possible mixed / invalid values</h3>${renderTable(mixedValues, ['Data row','Column','Value','Possible issue'], 1000)}</div>`,
+    `<div><h3>CSV structure warnings</h3>${renderTable(importIssues, ['Issue','Details'], 1000)}</div>`
+  ].join('');
+  showMessage('Quality scan complete. Treat flags as items to investigate, not automatic proof of errors.', 'info');
+}
+
+function logChange(rowIndex, column, oldValue, newValue, method, reason) {
+  activeDataset.changeLog.push({
+    timestamp: new Date().toISOString(), row: rowIndex + 1, column,
+    original_value: oldValue, new_value: newValue, method, reason
+  });
+}
+
+function previewManualEdit() {
+  if (!activeDataset) { showMessage('Load a CSV before editing.', 'warning'); return; }
+  const rowIndex = Number($('editRow').value) - 1;
+  const column = $('editColumn').value;
+  const newValue = $('editValue').value;
+  const reason = $('editReason').value.trim();
+  if (!Number.isInteger(rowIndex) || rowIndex < 0 || rowIndex >= activeDataset.working.length || !column) {
+    showMessage('Enter a valid data row number and choose a column.', 'warning'); return;
+  }
+  if (!reason) { showMessage('Enter the reason or evidence for the proposed edit.', 'warning'); return; }
+  const oldValue = activeDataset.working[rowIndex][column];
+  pendingEdit = { dataset: activeDataset, rowIndex, column, oldValue, newValue, reason };
+  $('editPreview').innerHTML = `<div class="notice"><b>Preview only — no change has been made.</b><br>Data row: ${rowIndex + 1}<br>Column: ${escapeHTML(column)}<br>Original value: ${escapeHTML(oldValue)}<br>Proposed value: ${escapeHTML(newValue)}<br>Reason: ${escapeHTML(reason)}<div class="toolbar"><button id="applyEdit" type="button">Apply this edit</button><button id="cancelEdit" type="button" class="secondary">Cancel</button></div></div>`;
+  $('applyEdit').addEventListener('click', applyManualEdit);
+  $('cancelEdit').addEventListener('click', () => { pendingEdit = null; $('editPreview').textContent = 'Edit cancelled. No change was made.'; });
+}
+
+function applyManualEdit() {
+  const edit = pendingEdit;
+  if (!edit || edit.dataset !== activeDataset) { showMessage('The preview is no longer current. Preview the edit again.', 'warning'); return; }
+  const current = activeDataset.working[edit.rowIndex]?.[edit.column];
+  if (current !== edit.oldValue) { pendingEdit = null; $('editPreview').textContent = 'The cell changed after preview. No edit was applied; preview it again.'; return; }
+  activeDataset.working[edit.rowIndex][edit.column] = edit.newValue;
+  logChange(edit.rowIndex, edit.column, edit.oldValue, edit.newValue, 'Manual edit', edit.reason);
+  pendingEdit = null;
+  refresh();
+  showMessage('Edit applied to the working copy and recorded in the change log. The original upload remains unchanged.');
+}
+
+function previewWhitespaceTrim() {
+  if (!activeDataset) { showMessage('Load a CSV before previewing changes.', 'warning'); return; }
+  const changes = [];
+  activeDataset.working.forEach((record, index) => activeDataset.headers.forEach(column => {
+    const oldValue = String(record[column] ?? '');
+    const newValue = oldValue.trim();
+    if (oldValue !== newValue) changes.push({ rowIndex: index, column, oldValue, newValue });
+  }));
+  pendingTrim = { dataset: activeDataset, changes };
+  if (!changes.length) { $('trimResults').innerHTML = '<div class="empty">No leading or trailing whitespace found.</div>'; return; }
+  $('trimResults').innerHTML = `<p>${changes.length} proposed change(s). Nothing has been changed yet.</p>${renderTable(changes.map(change => ({ 'Data row': change.rowIndex + 1, Column: change.column, Original: change.oldValue, Proposed: change.newValue })), ['Data row','Column','Original','Proposed'], 500)}${changes.length > 500 ? '<p class="small-note">Preview displays the first 500 changes; all previewed changes will be applied if confirmed.</p>' : ''}<button id="applyTrim" type="button">Apply all previewed trims</button> <button id="cancelTrim" type="button" class="secondary">Cancel</button>`;
+  $('applyTrim').addEventListener('click', applyWhitespaceTrim);
+  $('cancelTrim').addEventListener('click', () => { pendingTrim = null; $('trimResults').textContent = 'Trim preview cancelled. No changes were made.'; });
+}
+
+function applyWhitespaceTrim() {
+  const preview = pendingTrim;
+  if (!preview || preview.dataset !== activeDataset) { showMessage('The trim preview is no longer current. Preview again.', 'warning'); return; }
+  let applied = 0;
+  for (const change of preview.changes) {
+    const current = activeDataset.working[change.rowIndex]?.[change.column];
+    if (current !== change.oldValue) continue;
+    activeDataset.working[change.rowIndex][change.column] = change.newValue;
+    logChange(change.rowIndex, change.column, change.oldValue, change.newValue, 'Trim whitespace', 'Removed leading/trailing whitespace');
+    applied++;
+  }
+  pendingTrim = null;
+  refresh();
+  showMessage(`${applied} whitespace correction(s) applied and recorded. The original upload remains unchanged.`);
+}
+
+function calculateStatistics(values) {
+  const clean = values.filter(value => typeof value === 'number' && Number.isFinite(value));
+  if (!clean.length) return null;
+  const sorted = [...clean].sort((a, b) => a - b);
+  const count = sorted.length;
+  let sum = 0, compensation = 0;
+  for (const value of sorted) {
+    const adjusted = value - compensation;
+    const next = sum + adjusted;
+    compensation = (next - sum) - adjusted;
+    sum = next;
+  }
+  const mean = sum / count;
+  let runningMean = 0, sumSquares = 0;
+  for (let i = 0; i < count; i++) {
+    const delta = sorted[i] - runningMean;
+    runningMean += delta / (i + 1);
+    sumSquares += delta * (sorted[i] - runningMean);
+  }
+  const frequency = new Map();
+  sorted.forEach(value => frequency.set(value, (frequency.get(value) || 0) + 1));
+  const maxFrequency = Math.max(...frequency.values());
+  const modes = [...frequency.entries()].filter(([, frequencyCount]) => frequencyCount === maxFrequency).map(([value]) => value);
+  const median = count % 2 ? sorted[(count - 1) / 2] : (sorted[count / 2 - 1] + sorted[count / 2]) / 2;
+  return {
+    count, total: sum, mean, median,
+    mode: maxFrequency === 1 ? 'No mode' : modes.join(', '),
+    min: sorted[0], max: sorted[count - 1], range: sorted[count - 1] - sorted[0],
+    population_sd: Math.sqrt(Math.max(0, sumSquares / count)), sorted
+  };
+}
+
+function formatNumber(value) {
+  return typeof value === 'number' ? Number(value.toFixed(4)).toLocaleString(undefined, { maximumFractionDigits: 4 }) : escapeHTML(value);
+}
+
+function statisticsCards(result) {
+  const rows = [
+    ['Count', result.count], ['Total', result.total], ['Mean', result.mean], ['Median', result.median],
+    ['Mode', result.mode], ['Minimum', result.min], ['Maximum', result.max], ['Range', result.range], ['Population SD', result.population_sd]
+  ];
+  return rows.map(([label, value]) => `<div class="metric"><strong>${formatNumber(value)}</strong><span>${label}</span></div>`).join('');
+}
+
+function calculateSelectedStats() {
+  if (!activeDataset) { showMessage('Load a CSV before calculating statistics.', 'warning'); return; }
+  const column = $('statColumn').value;
+  if (!column) { $('statResults').innerHTML = '<div class="empty">Select a numeric column first.</div>'; $('statNote').textContent = 'Choose a numeric column, then calculate again.'; return; }
+  const entries = getNumericEntries(column);
+  const result = calculateStatistics(entries.map(entry => entry.value));
+  $('statResults').innerHTML = result ? statisticsCards(result) : '<div class="empty">No valid numeric values were found in this column.</div>';
+  const excluded = activeDataset.working.length - entries.length;
+  $('statNote').textContent = result
+    ? `Calculated from ${result.count} values. ${excluded} row(s) were blank or not recognised as numeric and were excluded. Population SD divides by N. Currency symbols and valid thousands separators are accepted. A trailing % is treated as percentage points (for example, 5% is read as 5, not 0.05).`
+    : 'Check that the selected column contains numeric values.';
+}
+
+function percentileInclusive(sortedValues, probability) {
+  if (!sortedValues.length) return NaN;
+  const position = (sortedValues.length - 1) * probability;
+  const lowerIndex = Math.floor(position);
+  const upperIndex = Math.ceil(position);
+  return sortedValues[lowerIndex] + (sortedValues[upperIndex] - sortedValues[lowerIndex]) * (position - lowerIndex);
+}
+
+function drawScatterChart(entries, lowerFence, upperFence, column) {
+  const canvas = $('chartCanvas');
+  const context = canvas.getContext('2d');
+  if (!context) return false;
+  const width = canvas.width, height = canvas.height;
+  context.clearRect(0, 0, width, height);
+  const displayed = entries.slice(0, 150);
+  if (!displayed.length) return false;
+  const values = displayed.map(entry => entry.value);
+  let min = Math.min(...values), max = Math.max(...values);
+  if (min === max) { min -= 1; max += 1; }
+  const left = 64, right = width - 28, top = 36, bottom = height - 52;
+  const plotHeight = bottom - top, plotWidth = right - left;
+  context.strokeStyle = '#d8e1eb'; context.lineWidth = 1;
+  context.beginPath(); context.moveTo(left, top); context.lineTo(left, bottom); context.lineTo(right, bottom); context.stroke();
+  context.fillStyle = '#40546a'; context.font = '13px sans-serif';
+  context.fillText(`${column} · first ${displayed.length} of ${entries.length} numeric records`, left, 20);
+  context.fillText(formatNumber(max), 8, top + 4);
+  context.fillText(formatNumber(min), 8, bottom + 4);
+  context.strokeStyle = '#c18a2c'; context.setLineDash([5, 4]);
+  for (const fence of [lowerFence, upperFence]) {
+    if (fence >= min && fence <= max) {
+      const y = bottom - ((fence - min) / (max - min)) * plotHeight;
+      context.beginPath(); context.moveTo(left, y); context.lineTo(right, y); context.stroke();
+    }
+  }
+  context.setLineDash([]);
+  displayed.forEach((entry, index) => {
+    const x = displayed.length === 1 ? left + plotWidth / 2 : left + (index / (displayed.length - 1)) * plotWidth;
+    const y = bottom - ((entry.value - min) / (max - min)) * plotHeight;
+    const isOutlier = entry.value < lowerFence || entry.value > upperFence;
+    context.beginPath(); context.arc(x, y, 4, 0, Math.PI * 2);
+    context.fillStyle = isOutlier ? '#b94b4b' : '#245b8f'; context.fill();
+  });
+  context.fillStyle = '#64748b'; context.fillText('Record order →', right - 100, height - 15);
+  return true;
+}
+
+function drawOutliers() {
+  if (!activeDataset) { showMessage('Load a CSV before drawing a chart.', 'warning'); return; }
+  const column = $('chartColumn').value;
+  if (!column) { showMessage('Select a numeric column first.', 'warning'); return; }
+  const entries = getNumericEntries(column);
+  const allStats = calculateStatistics(entries.map(entry => entry.value));
+  if (!allStats) { $('outlierResults').innerHTML = '<div class="empty">No valid numeric values were found.</div>'; return; }
+  const q1 = percentileInclusive(allStats.sorted, 0.25);
+  const q3 = percentileInclusive(allStats.sorted, 0.75);
+  const iqr = q3 - q1;
+  const lowerFence = q1 - 1.5 * iqr;
+  const upperFence = q3 + 1.5 * iqr;
+  const outliers = entries.filter(entry => entry.value < lowerFence || entry.value > upperFence);
+  const within = entries.filter(entry => entry.value >= lowerFence && entry.value <= upperFence);
+  const withoutStats = calculateStatistics(within.map(entry => entry.value));
+  drawScatterChart(entries, lowerFence, upperFence, column);
+  const compareRows = [
+    { Dataset: 'All valid values', Count: allStats.count, Total: allStats.total, Mean: allStats.mean, Median: allStats.median, Mode: allStats.mode, Minimum: allStats.min, Maximum: allStats.max, Range: allStats.range, 'Population SD': allStats.population_sd },
+    ...(withoutStats ? [{ Dataset: 'Values inside original fences', Count: withoutStats.count, Total: withoutStats.total, Mean: withoutStats.mean, Median: withoutStats.median, Mode: withoutStats.mode, Minimum: withoutStats.min, Maximum: withoutStats.max, Range: withoutStats.range, 'Population SD': withoutStats.population_sd }] : [])
+  ];
+  const outlierRows = outliers.map(entry => ({ 'Data row': entry.row, 'Original value': entry.raw, 'Numeric value': entry.value, 'Fence result': entry.value < lowerFence ? 'Below lower fence' : 'Above upper fence' }));
+  $('outlierResults').innerHTML = `
+    <div class="grid">${[
+      ['Q1 (inclusive)', q1], ['Q3 (inclusive)', q3], ['IQR', iqr], ['Lower fence', lowerFence], ['Upper fence', upperFence], ['Outlier count', outliers.length]
+    ].map(([label, value]) => `<div class="metric"><strong>${formatNumber(value)}</strong><span>${label}</span></div>`).join('')}</div>
+    <div class="card"><h3>Statistics comparison</h3>${renderTable(compareRows, ['Dataset','Count','Total','Mean','Median','Mode','Minimum','Maximum','Range','Population SD'], 10)}</div>
+    <div class="card"><h3>Values outside the fences</h3>${renderTable(outlierRows, ['Data row','Original value','Numeric value','Fence result'], 1000)}</div>
+    <p class="small-note">Quartiles use the inclusive percentile position (N − 1) × p with linear interpolation. Values outside the original 1.5 × IQR fences are excluded for the second statistics row; the fences are not recalculated. Outliers are not deleted automatically. The chart plots up to the first 150 numeric records in row order.</p>`;
+}
+
+function exportPlan() {
+  const ds = activeDataset;
+  const rows = [];
+  const dedupeChanges = [];
+  const firstByKey = new Map();
+  ds.working.forEach((record, index) => {
+    const key = JSON.stringify(ds.headers.map(column => record[column] ?? ''));
+    if ($('removeExactDuplicates').checked && firstByKey.has(key)) {
+      dedupeChanges.push({ timestamp: new Date().toISOString(), row: index + 1, column: '(entire row)', original_value: JSON.stringify(record), new_value: 'Excluded from exported CSV', method: 'Exact duplicate removal during export', reason: `Exact duplicate of data row ${firstByKey.get(key)}.` });
+    } else {
+      if (!firstByKey.has(key)) firstByKey.set(key, index + 1);
+      rows.push(record);
+    }
+  });
+  return { rows, dedupeChanges };
+}
+
+function exportCSV() {
+  if (!activeDataset) { showMessage('Load a CSV before exporting.', 'warning'); return; }
+  const ds = activeDataset;
+  const plan = exportPlan();
+  const lines = [ds.headers.map(csvEscape).join(',')];
+  plan.rows.forEach(record => lines.push(ds.headers.map(column => csvEscape(record[column])).join(',')));
+  downloadFile(`${safeBaseName(ds.name)}_cleaned.csv`, lines.join('\r\n'));
+  ds.lastExportDedupeChanges = ds.lastExportDedupeChanges.concat(plan.dedupeChanges);
+  showMessage(`Cleaned CSV exported with ${plan.rows.length} row(s). ${plan.dedupeChanges.length} exact duplicate row(s)${plan.dedupeChanges.length ? ' were excluded and recorded in the change log.' : ' were excluded.'}`);
+  renderLog();
+}
+
+function countExactDuplicates() {
+  if (!activeDataset) return 0;
+  const seen = new Set();
+  let count = 0;
+  activeDataset.working.forEach(record => {
+    const key = JSON.stringify(activeDataset.headers.map(column => record[column] ?? ''));
+    if (seen.has(key)) count++;
+    else seen.add(key);
+  });
+  return count;
+}
+
+function getCombinedLog() {
+  if (!activeDataset) return [];
+  return activeDataset.changeLog.concat(activeDataset.lastExportDedupeChanges);
+}
+
+function renderLog() {
+  if (!activeDataset) {
+    $('logSummary').textContent = 'No changes recorded.';
+    $('logTable').innerHTML = '<div class="empty">No changes yet.</div>';
+    return;
+  }
+  const combined = getCombinedLog();
+  const appliedCount = activeDataset.changeLog.length;
+  const exportedDedupeCount = activeDataset.lastExportDedupeChanges.length;
+  const pendingDedupeCount = $('removeExactDuplicates').checked ? countExactDuplicates() : 0;
+  $('logSummary').textContent = `${appliedCount} applied edit(s) · ${exportedDedupeCount} exact duplicate row(s) excluded across CSV exports · ${pendingDedupeCount} set to be excluded on the next export.`;
+  const exportRows = activeDataset.working.length - pendingDedupeCount;
+  $('exportPreview').textContent = `Export preview: ${exportRows.toLocaleString()} data records + 1 header row (${activeDataset.working.length.toLocaleString()} working records; ${pendingDedupeCount.toLocaleString()} exact duplicate row(s) ${$('removeExactDuplicates').checked ? 'will be excluded' : 'will be kept'}). The Overview tab continues to show the working-copy count; exporting does not alter your working copy or original file.`;
+  $('logTable').innerHTML = renderTable(combined, ['timestamp','row','column','original_value','new_value','method','reason'], 1000);
+}
+
+function exportChangeLog() {
+  if (!activeDataset) { showMessage('Load a CSV before exporting a change log.', 'warning'); return; }
+  const logRows = getCombinedLog();
+  if (!logRows.length) { showMessage('There are no applied changes or export-only duplicate removals to log.', 'warning'); return; }
+  const columns = ['timestamp','row','column','original_value','new_value','method','reason'];
+  const lines = [columns.map(csvEscape).join(',')];
+  logRows.forEach(record => lines.push(columns.map(column => csvEscape(record[column])).join(',')));
+  downloadFile(`${safeBaseName(activeDataset.name)}_change_log.csv`, lines.join('\r\n'));
+  showMessage('Change log exported. It includes applied edits and any exact duplicates currently excluded from export.');
+}
+
+function restoreWorkingCopy() {
+  if (!activeDataset) { showMessage('Load a CSV first.', 'warning'); return; }
+  if (!window.confirm('Restore this dataset working copy from its original upload and clear its applied change log?')) return;
+  activeDataset.working = activeDataset.original.map(record => ({ ...record }));
+  activeDataset.changeLog = [];
+  activeDataset.lastExportDedupeChanges = [];
+  clearDerivedDisplays();
+  refresh();
+  showMessage('Working copy restored from the original upload. The original file itself was never changed.');
+}
+
+$('fileInput').addEventListener('change', async event => {
+  const files = Array.from(event.target.files || []);
+  if (!files.length) return;
+  let loaded = 0;
+  const failures = [];
+  for (const file of files) {
+    try {
+      const parsed = parseCSV(await file.text());
+      addDataset(file.name, parsed);
+      loaded++;
+    } catch (error) {
+      failures.push(`${file.name}: ${error.message}`);
+    }
+  }
+  event.target.value = '';
+  if (failures.length) showMessage(`${loaded} file(s) loaded. ${failures.join(' | ')}`, loaded ? 'warning' : 'error');
+  else showMessage(`${loaded} CSV file(s) loaded. Use the Active dataset menu to switch between them.`);
+});
+
+$('datasetPicker').addEventListener('change', event => setActiveDataset(Number(event.target.value)));
+$('demoButton').addEventListener('click', () => {
+  const demoCSV = 'ID,Date,Team,Amount,Description,Notes\r\nA01,2075-01-01,Engineering,12.5,"Replacement parts, small batch",Checked\r\nA02,2075-01-02,Research,18.2,Lab materials,Pending\r\nA03,2075-01-03,Engineering,9.8,Sensor cable,Checked\r\nA04,2075-01-04,Research,22.1,Sample containers,Approved\r\nA05,2075-01-05,Operations,14.0,Filter units,Checked';
+  try { addDataset('synthetic_demo.csv', parseCSV(demoCSV)); showMessage('Synthetic demo loaded. This invented data is only for testing the tool, not for your assignment report.'); }
+  catch (error) { showMessage(`Could not load demo: ${error.message}`, 'error'); }
+});
+
+document.querySelectorAll('.tab').forEach(button => button.addEventListener('click', () => {
+  document.querySelectorAll('.tab').forEach(tab => {
+    const isActive = tab === button;
+    tab.classList.toggle('active', isActive);
+    tab.setAttribute('aria-selected', String(isActive));
+  });
+  document.querySelectorAll('.panel').forEach(panel => panel.classList.toggle('active', panel.id === button.dataset.tab));
+}));
+
+['searchInput','filterColumn','filterMode','filterValue','sortColumn','sortDirection','rowLimit'].forEach(id => {
+  $(id).addEventListener(id === 'searchInput' || id === 'filterValue' ? 'input' : 'change', renderExplorer);
+});
+$('clearExplorer').addEventListener('click', () => {
+  ['searchInput','filterValue'].forEach(id => $(id).value = '');
+  ['filterColumn','sortColumn'].forEach(id => $(id).value = '');
+  $('filterMode').value = 'contains'; $('sortDirection').value = 'asc'; $('rowLimit').value = '1000';
+  renderExplorer();
+});
+$('runScan').addEventListener('click', scanQuality);
+$('previewEdit').addEventListener('click', previewManualEdit);
+$('previewTrim').addEventListener('click', previewWhitespaceTrim);
+$('calculateStats').addEventListener('click', calculateSelectedStats);
+$('drawChart').addEventListener('click', drawOutliers);
+$('exportCsv').addEventListener('click', exportCSV);
+$('exportChangeLog').addEventListener('click', exportChangeLog);
+$('restoreOriginal').addEventListener('click', restoreWorkingCopy);
+$('removeExactDuplicates').addEventListener('change', renderLog);
+
+refresh();
+</script>
+</body>
+</html>
